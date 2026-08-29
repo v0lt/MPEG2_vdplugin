@@ -2,6 +2,7 @@
 // MPEG-2 Plugin for VirtualDub 1.8.1+
 // Copyright (C) 2007-2012 fccHandler
 // Copyright (C) 1998-2012 Avery Lee
+// Copyright (C) 2026 v0lt
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -149,7 +150,7 @@ void InputFileMPEG2::UpdateDlgAudio(HWND hDlg, unsigned int index)
 		"Stream %u of %u", index + 1, count);
 
 	buf[sizeof(buf) - 1] = '\0';
-	SetDlgItemText(hDlg, IDC_STREAMNUM, buf);
+	SetDlgItemTextA(hDlg, IDC_STREAMNUM, buf);
 
 /***************************************************************************
  *      Pre-calculate Min/max/total frame sizes
@@ -240,7 +241,7 @@ void InputFileMPEG2::UpdateDlgAudio(HWND hDlg, unsigned int index)
     }
 
 	buf[sizeof(buf) - 1] = '\0';
-	SetDlgItemText(hDlg, IDC_AUDIO_FORMAT, buf);
+	SetDlgItemTextA(hDlg, IDC_AUDIO_FORMAT, buf);
 
 /***************************************************************************
  *      Number of frames (duration):
@@ -258,7 +259,7 @@ void InputFileMPEG2::UpdateDlgAudio(HWND hDlg, unsigned int index)
 	}
 
 	buf[sizeof(buf) - 1] = '\0';
-	SetDlgItemText(hDlg, IDC_AUDIO_NUMFRAMES, buf);
+	SetDlgItemTextA(hDlg, IDC_AUDIO_NUMFRAMES, buf);
 
 /***************************************************************************
  *      Min/avg/max(total) frame size:
@@ -279,7 +280,7 @@ void InputFileMPEG2::UpdateDlgAudio(HWND hDlg, unsigned int index)
 	}
 
 	buf[sizeof(buf) - 1] = '\0';
-	SetDlgItemText(hDlg, IDC_AUDIO_SIZE, buf);
+	SetDlgItemTextA(hDlg, IDC_AUDIO_SIZE, buf);
 
 /***************************************************************************
  *      Detected skew (internal):
@@ -292,7 +293,7 @@ void InputFileMPEG2::UpdateDlgAudio(HWND hDlg, unsigned int index)
 	_snprintf(buf, sizeof(buf), "%i ms", skew);
 	buf[sizeof(buf) - 1] = '\0';
 
-	SetDlgItemText(hDlg, IDC_AUDIO_SKEW, buf);
+	SetDlgItemTextA(hDlg, IDC_AUDIO_SKEW, buf);
 }
 
 

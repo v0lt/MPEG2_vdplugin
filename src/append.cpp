@@ -111,7 +111,8 @@ static inline LPWSTR MyOpenDlgW(HWND hwndOwner) {
 	return ofn.lpstrFile;
 }
 
-static bool AddString(AppendNames *an, int from_index, int to_index) {
+static bool AddString(AppendNames *an, int from_index, int to_index)
+{
 	bool ret = false;
 
 	if ((unsigned int)from_index < (unsigned int)MAX_FILES) {
@@ -122,7 +123,7 @@ static bool AddString(AppendNames *an, int from_index, int to_index) {
 				while (tmp[len - 1] != '\\' && tmp[len - 1] != '/') {
 					if (--len <= 0) break;
 				}
-				SendMessage(hwndList, LB_INSERTSTRING, to_index, (LPARAM)(tmp + len));
+				SendMessageA(hwndList, LB_INSERTSTRING, to_index, (LPARAM)(tmp + len));
 				ret = true;
 			}
 			delete[] tmp;
@@ -131,8 +132,9 @@ static bool AddString(AppendNames *an, int from_index, int to_index) {
 	return ret;
 }
 
-static inline void DoMoveUp(AppendNames *an) {
-	int i = (int)SendMessage(hwndList, LB_GETCURSEL, 0, 0);
+static inline void DoMoveUp(AppendNames *an)
+{
+	int i = (int)SendMessageW(hwndList, LB_GETCURSEL, 0, 0);
 	if ((unsigned int)i < (unsigned int)an->num_files && i > 0) {
 		// re-insert i at position i - 1,
 		// then remove position i + 1
@@ -140,20 +142,21 @@ static inline void DoMoveUp(AppendNames *an) {
 		if (AddString(an, i, i - 1)) {
 			LPWSTR tmp;
 
-			SendMessage(hwndList, LB_DELETESTRING, i + 1, 0);
+			SendMessageW(hwndList, LB_DELETESTRING, i + 1, 0);
 
 			tmp = an->fName[i];
 			an->fName[i] = an->fName[i - 1];
 			an->fName[i - 1] = tmp;
 
 			--i;
-			SendMessage(hwndList, LB_SETCURSEL, (WPARAM)i, 0);
+			SendMessageW(hwndList, LB_SETCURSEL, (WPARAM)i, 0);
 		}
 	}
 }
 
-static inline void DoMoveDown(AppendNames *an) {
-	int i = (int)SendMessage(hwndList, LB_GETCURSEL, 0, 0);
+static inline void DoMoveDown(AppendNames *an)
+{
+	int i = (int)SendMessageW(hwndList, LB_GETCURSEL, 0, 0);
 	if (an->num_files > 1 && (unsigned int)i < (unsigned int)(an->num_files - 1)) {
 		// re-insert i + 1 at position i,
 		// then remove position i + 2
@@ -161,36 +164,36 @@ static inline void DoMoveDown(AppendNames *an) {
 		if (AddString(an, i + 1, i)) {
 			LPWSTR tmp;
 
-			SendMessage(hwndList, LB_DELETESTRING, i + 2, 0);
+			SendMessageW(hwndList, LB_DELETESTRING, i + 2, 0);
 
 			tmp = an->fName[i];
 			an->fName[i] = an->fName[i + 1];
 			an->fName[i + 1] = tmp;
 
 			++i;
-			SendMessage(hwndList, LB_SETCURSEL, (WPARAM)i, 0);
+			SendMessageW(hwndList, LB_SETCURSEL, (WPARAM)i, 0);
 		}
 	}
 }
 
-static inline void DoSort(AppendNames *an) {
-
+static inline void DoSort(AppendNames *an)
+{
 	LPSTR tmp1 = new CHAR[(MAX_PATH + 1) * 2];
 
 	if (tmp1 != NULL) {
 		bool sorted;
 
 		LPSTR tmp2 = tmp1 + MAX_PATH + 1;
-		int prev = (int)SendMessage(hwndList, LB_GETCURSEL, 0, 0);
+		int prev = (int)SendMessageW(hwndList, LB_GETCURSEL, 0, 0);
 
 		// Bubble-sort is easiest; speed isn't critical
 		do {
 			sorted = true;
 			for (int n = 1; n < an->num_files; ++n) {
-				SendMessage(hwndList, LB_GETTEXT, (WPARAM)(n - 1), (LPARAM)tmp1);
-				SendMessage(hwndList, LB_GETTEXT, (WPARAM)n, (LPARAM)tmp2);
+				SendMessageA(hwndList, LB_GETTEXT, (WPARAM)(n - 1), (LPARAM)tmp1);
+				SendMessageA(hwndList, LB_GETTEXT, (WPARAM)n, (LPARAM)tmp2);
 				if (CompareStringA(LOCALE_USER_DEFAULT, NORM_IGNORECASE, tmp1, -1, tmp2, -1) == CSTR_GREATER_THAN) {
-					SendMessage(hwndList, LB_SETCURSEL, (WPARAM)n, 0);
+					SendMessageW(hwndList, LB_SETCURSEL, (WPARAM)n, 0);
 					DoMoveUp(an);
 					sorted = false;
 				}
@@ -199,7 +202,7 @@ static inline void DoSort(AppendNames *an) {
 
 		delete[] tmp1;
 
-		SendMessage(hwndList, LB_SETCURSEL, (WPARAM)prev, 0);
+		SendMessageW(hwndList, LB_SETCURSEL, (WPARAM)prev, 0);
 	}
 }
 
@@ -259,7 +262,7 @@ static inline void DoAdd(AppendNames *an, HWND hDlg) {
 			delete[] path;
 
 			if (an->num_files > 0) {
-				SendMessage(hwndList, LB_SETCURSEL, (WPARAM)(an->num_files - 1), 0);
+				SendMessageW(hwndList, LB_SETCURSEL, (WPARAM)(an->num_files - 1), 0);
 				EnableWindow(hwndRemove, TRUE);
 				if (an->num_files > 1) {
 					EnableWindow(hwndMoveUp, TRUE);
@@ -271,10 +274,11 @@ static inline void DoAdd(AppendNames *an, HWND hDlg) {
 	}
 }
 
-static inline void DoRemove(AppendNames *an) {
-	int i = (int)SendMessage(hwndList, LB_GETCURSEL, 0, 0);
+static inline void DoRemove(AppendNames *an)
+{
+	int i = (int)SendMessageW(hwndList, LB_GETCURSEL, 0, 0);
 	if ((unsigned int)i < (unsigned int)an->num_files) {
-		SendMessage(hwndList, LB_DELETESTRING, i, 0);
+		SendMessageW(hwndList, LB_DELETESTRING, i, 0);
 
 		delete[] an->fName[i];
 		an->fName[i] = NULL;
@@ -285,7 +289,7 @@ static inline void DoRemove(AppendNames *an) {
 		an->fName[an->num_files] = NULL;
 
 		if (i == an->num_files) --i;
-		SendMessage(hwndList, LB_SETCURSEL, (WPARAM)i, 0);
+		SendMessageW(hwndList, LB_SETCURSEL, (WPARAM)i, 0);
 
 		if (an->num_files < 2) {
 			EnableWindow(hwndMoveUp, FALSE);
@@ -431,14 +435,14 @@ static INT_PTR APIENTRY AppendDlgProc(HWND hDlg, UINT message, WPARAM wParam, LP
 
 			// Enable the appropriate buttons
 			if (i > 0) {
-				SendMessage(hwndList, LB_SETCURSEL, 0, 0);
+				SendMessageW(hwndList, LB_SETCURSEL, 0, 0);
 				if (i > 1) {
 					EnableWindow(hwndMoveUp, TRUE);
 					EnableWindow(hwndMoveDown, TRUE);
 					EnableWindow(hwndSort, TRUE);
 				}
 			} else {
-				SendMessage(hwndList, LB_SETCURSEL, (WPARAM)-1, 0);
+				SendMessageW(hwndList, LB_SETCURSEL, (WPARAM)-1, 0);
 				EnableWindow(hwndRemove, FALSE);
 			}
 		}
@@ -519,7 +523,7 @@ void AppendDlg(AppendNames *an, inFile *pIn, bool bShowUI, HMODULE hModule, HWND
 
 	if (bShowUI) {
 		// Pop up the dialog
-		DialogBoxParam(hModule, MAKEINTRESOURCE(IDD_APPEND),
+		DialogBoxParamA(hModule, MAKEINTRESOURCEA(IDD_APPEND),
 			(HWND)hwndParent, AppendDlgProc, (LPARAM)an);
 	} else {
 		// Automated; no UI

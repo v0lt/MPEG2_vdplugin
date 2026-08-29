@@ -2,6 +2,7 @@
 // MPEG-2 Plugin for VirtualDub 1.8.1+
 // Copyright (C) 2007-2012 fccHandler
 // Copyright (C) 1998-2012 Avery Lee
+// Copyright (C) 2026 v0lt
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -229,7 +230,7 @@ INT_PTR CALLBACK InputFileMPEG2::ChooseAudioDlg(HWND hDlg, UINT uMsg,
 			for (i = 64; i < 96; ++i) {
 				if (thisPtr->audio_stream_list[i]) {
 					sprintf(buf, "MPEG Audio Stream 0x%02X", i + 128);
-					SendMessage(hwndList, LB_ADDSTRING, 0, (LPARAM)buf);
+					SendMessageA(hwndList, LB_ADDSTRING, 0, (LPARAM)buf);
 				}
 			}
 
@@ -237,7 +238,7 @@ INT_PTR CALLBACK InputFileMPEG2::ChooseAudioDlg(HWND hDlg, UINT uMsg,
 			for (i = 0; i < 8; ++i) {
 				if (thisPtr->audio_stream_list[i]) {
 					sprintf(buf, "Dolby AC-3 Audio (substream 0x%02X)", i + 128);
-					SendMessage(hwndList, LB_ADDSTRING, 0, (LPARAM)buf);
+					SendMessageA(hwndList, LB_ADDSTRING, 0, (LPARAM)buf);
 				}
 			}
 
@@ -245,11 +246,11 @@ INT_PTR CALLBACK InputFileMPEG2::ChooseAudioDlg(HWND hDlg, UINT uMsg,
 			for (i = 32; i < 40; ++i) {
 				if (thisPtr->audio_stream_list[i]) {
 					sprintf(buf, "Linear PCM Audio (substream 0x%02X)", i + 128);
-					SendMessage(hwndList, LB_ADDSTRING, 0, (LPARAM)buf);
+					SendMessageA(hwndList, LB_ADDSTRING, 0, (LPARAM)buf);
 				}
 			}
 
-			SendMessage(hwndList,LB_SETCURSEL,0,0);
+			SendMessageW(hwndList,LB_SETCURSEL,0,0);
 			return TRUE;
 		}
 
@@ -260,7 +261,7 @@ INT_PTR CALLBACK InputFileMPEG2::ChooseAudioDlg(HWND hDlg, UINT uMsg,
 			InputFileMPEG2 *thisPtr = (InputFileMPEG2 *)GetWindowLongPtr(hDlg, DWLP_USER);
 
 			HWND hwndList = GetDlgItem(hDlg, IDC_LIST1);
-			sel = SendMessage(hwndList, LB_GETCURSEL, 0, 0);
+			sel = SendMessageW(hwndList, LB_GETCURSEL, 0, 0);
 
 			// Any MPEG audio streams (C0 to DF)
 			for (i = 64; i < 96; ++i) {

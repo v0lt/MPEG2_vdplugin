@@ -2,6 +2,7 @@
 // MPEG-2 Plugin for VirtualDub 1.8.1+
 // Copyright (C) 2007-2012 fccHandler
 // Copyright (C) 1998-2012 Avery Lee
+// Copyright (C) 2026 v0lt
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -1701,7 +1702,7 @@ void MPEGFileParser::Parse(HMODULE hModule) {
 
 		mFile.inSeek(0);
 		if (Read() == 0x47) {
-			MessageBox(NULL, "File matches the profile of a "
+			MessageBoxA(NULL, "File matches the profile of a "
 				"Transport Stream and may not decode correctly.",
 				"Warning", MB_ICONEXCLAMATION | MB_SETFOREGROUND | MB_TASKMODAL | MB_OK);
 		}
