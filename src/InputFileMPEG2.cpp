@@ -949,7 +949,7 @@ const VDXPluginInfo mpeg2_info = {
 	L"MPEG-2",							// name of this plugin
 	L"fccHandler",						// author's name
 	L"Loads MPEG-2 program streams.",	// plugin description
-	0x04050000,							// version = 4.5.0000
+	0x04060000,							// version = 4.6.0000
 	kVDXPluginType_Input,				// type of plugin = input
 	0,									// flags = 0
 	10,									// API version required
