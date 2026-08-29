@@ -1043,10 +1043,10 @@ void VDMPEGAudioPolyphaseFilterSSE::SynthesizeStereo(sint16 *dst) {
 	bool odd = (mWindowPos & 1) != 0;
 
 	// reflected samples
-	static const __declspec(align(16)) uint32 invert[4]={0,0,0x80000000,0x80000000};
-	static const __declspec(align(16)) uint32 noinvert[4]={0,0,0,0};
-	static const __declspec(align(16)) uint32 evenmask[4]={~0,0,~0,0};
-	static const __declspec(align(16)) uint32 oddmask[4]={0,~0,0,~0};
+	static const __declspec(align(16)) uint32 invert[4]   = { 0,0,0x80000000,0x80000000 };
+	static const __declspec(align(16)) uint32 noinvert[4] = { 0,0,0,0 };
+	static const __declspec(align(16)) uint32 evenmask[4] = { ~0u,0,~0u,0 };
+	static const __declspec(align(16)) uint32 oddmask[4]  = { 0,~0u,0,~0u };
 
 #ifdef _M_AMD64
 	vdasm_mpegaudio_polyphase_matrixout_stereo(
