@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Priss">
+      <UniqueIdentifier>{8a462d55-859b-437a-a0b5-0bec39c082f6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="append.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="audio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DataVector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="decode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="index.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="infile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputFileMPEG2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputOptionsMPEG2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MPEG2Decoder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="video.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Priss\convert.cpp">
+      <Filter>Priss</Filter>
+    </ClCompile>
+    <ClCompile Include="Priss\engine.cpp">
+      <Filter>Priss</Filter>
+    </ClCompile>
+    <ClCompile Include="Priss\layer1.cpp">
+      <Filter>Priss</Filter>
+    </ClCompile>
+    <ClCompile Include="Priss\layer2.cpp">
+      <Filter>Priss</Filter>
+    </ClCompile>
+    <ClCompile Include="Priss\layer3.cpp">
+      <Filter>Priss</Filter>
+    </ClCompile>
+    <ClCompile Include="Priss\layer3tables.cpp">
+      <Filter>Priss</Filter>
+    </ClCompile>
+    <ClCompile Include="Priss\polyphase.cpp">
+      <Filter>Priss</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="idct_macros.inc">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="idct_tables.inc">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="MPEG2.def">
+      <Filter>Header Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="append.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="audio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DataVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="decode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="infile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputFileMPEG2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputOptionsMPEG2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mpeg2_asm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mpeg2_tables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MPEG2Decoder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Unknown.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vd2\plugin\vdinputdriver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vd2\plugin\vdplugin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="video.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Priss\bitreader.h">
+      <Filter>Priss</Filter>
+    </ClInclude>
+    <ClInclude Include="vd2\Priss\convert.h">
+      <Filter>Priss</Filter>
+    </ClInclude>
+    <ClInclude Include="vd2\system\cpuaccel.h">
+      <Filter>Priss</Filter>
+    </ClInclude>
+    <ClInclude Include="vd2\Priss\decoder.h">
+      <Filter>Priss</Filter>
+    </ClInclude>
+    <ClInclude Include="Priss\engine.h">
+      <Filter>Priss</Filter>
+    </ClInclude>
+    <ClInclude Include="Priss\polyphase.h">
+      <Filter>Priss</Filter>
+    </ClInclude>
+    <ClInclude Include="vd2\system\vdtypes.h">
+      <Filter>Priss</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MPEG2.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="mpeg2_x64.asm">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="mpeg2_x86.asm">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Priss\a64_polyphase.asm">
+      <Filter>Priss</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>
