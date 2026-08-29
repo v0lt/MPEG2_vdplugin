@@ -116,17 +116,16 @@ static bool AddString(AppendNames *an, int from_index, int to_index)
 	bool ret = false;
 
 	if ((unsigned int)from_index < (unsigned int)MAX_FILES) {
-		char *tmp = inFile::wchar_to_ansi(an->fName[from_index], -1);
+		LPWSTR tmp = an->fName[from_index];
 		if (tmp != NULL) {
-			int len = lstrlenA(tmp);
+			int len = lstrlenW(tmp);
 			if (len > 0) {
-				while (tmp[len - 1] != '\\' && tmp[len - 1] != '/') {
+				while (tmp[len - 1] != L'\\' && tmp[len - 1] != L'/') {
 					if (--len <= 0) break;
 				}
-				SendMessageA(hwndList, LB_INSERTSTRING, to_index, (LPARAM)(tmp + len));
+				SendMessageW(hwndList, LB_INSERTSTRING, to_index, (LPARAM)(tmp + len));
 				ret = true;
 			}
-			delete[] tmp;
 		}
 	}
 	return ret;
@@ -178,21 +177,21 @@ static inline void DoMoveDown(AppendNames *an)
 
 static inline void DoSort(AppendNames *an)
 {
-	LPSTR tmp1 = new CHAR[(MAX_PATH + 1) * 2];
+	LPWSTR tmp1 = new WCHAR[(MAX_PATH + 1) * 2];
 
 	if (tmp1 != NULL) {
 		bool sorted;
 
-		LPSTR tmp2 = tmp1 + MAX_PATH + 1;
+		LPWSTR tmp2 = tmp1 + MAX_PATH + 1;
 		int prev = (int)SendMessageW(hwndList, LB_GETCURSEL, 0, 0);
 
 		// Bubble-sort is easiest; speed isn't critical
 		do {
 			sorted = true;
 			for (int n = 1; n < an->num_files; ++n) {
-				SendMessageA(hwndList, LB_GETTEXT, (WPARAM)(n - 1), (LPARAM)tmp1);
-				SendMessageA(hwndList, LB_GETTEXT, (WPARAM)n, (LPARAM)tmp2);
-				if (CompareStringA(LOCALE_USER_DEFAULT, NORM_IGNORECASE, tmp1, -1, tmp2, -1) == CSTR_GREATER_THAN) {
+				SendMessageW(hwndList, LB_GETTEXT, (WPARAM)(n - 1), (LPARAM)tmp1);
+				SendMessageW(hwndList, LB_GETTEXT, (WPARAM)n, (LPARAM)tmp2);
+				if (CompareStringW(LOCALE_USER_DEFAULT, NORM_IGNORECASE, tmp1, -1, tmp2, -1) == CSTR_GREATER_THAN) {
 					SendMessageW(hwndList, LB_SETCURSEL, (WPARAM)n, 0);
 					DoMoveUp(an);
 					sorted = false;

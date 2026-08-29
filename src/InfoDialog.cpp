@@ -642,9 +642,9 @@ INT_PTR CALLBACK InputFileMPEG2::InfoDlgProc(HWND hDlg, UINT message, WPARAM wPa
 		if (count > 1) {
 			HWND hwndSpin = GetDlgItem(hDlg, IDC_SPIN1);
 			EnableWindow(hwndSpin, TRUE);
-			SendMessageA(hwndSpin, UDM_SETRANGE, 0,
+			SendMessageW(hwndSpin, UDM_SETRANGE, 0,
 				(LPARAM)MAKELONG((count - 1), 0));
-			SendMessageA(hwndSpin, UDM_SETPOS, 0,
+			SendMessageW(hwndSpin, UDM_SETPOS, 0,
 				(LPARAM)MAKELONG(0, 0));
 			ShowWindow(hwndSpin, SW_SHOW);
 		}

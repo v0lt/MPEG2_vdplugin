@@ -1875,7 +1875,7 @@ INT_PTR CALLBACK MPEGFileParser::ParseDialogProc(HWND hDlg, UINT uMsg, WPARAM wP
 			buf[sizeof(buf) - 1] = '\0';
 			SetDlgItemTextA(hDlg, IDC_STATIC_MESSAGE, (LPSTR)buf);
 
-			SendMessageA(GetDlgItem(hDlg, IDC_PROGRESS), PBM_SETRANGE, 0, MAKELPARAM(0, 16384));
+			SendMessageW(GetDlgItem(hDlg, IDC_PROGRESS), PBM_SETRANGE, 0, MAKELPARAM(0, 16384));
 			SetTimer(hDlg, 1, 250, (TIMERPROC)NULL);
 			ShowWindow(hDlg, SW_SHOW);
 
@@ -1887,7 +1887,7 @@ INT_PTR CALLBACK MPEGFileParser::ParseDialogProc(HWND hDlg, UINT uMsg, WPARAM wP
 			__int64 file_len = thisPtr->mFile.inSize();
 			__int64 file_cpos = thisPtr->mFile.inPos();
 
-			SendMessageA(GetDlgItem(hDlg, IDC_PROGRESS), PBM_SETPOS,
+			SendMessageW(GetDlgItem(hDlg, IDC_PROGRESS), PBM_SETPOS,
 				(WPARAM)((file_cpos * 16384) / file_len), 0);
 
 			_snprintf(buf, sizeof(buf),
