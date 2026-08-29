@@ -55,6 +55,7 @@
   <PropertyGroup>
     <IntDir>$(SolutionDir)_obj\$(Configuration)_$(PlatformShortName)\</IntDir>
     <OutDir>$(SolutionDir)_bin\$(Configuration)_$(PlatformShortName)\</OutDir>
+	<TargetName>MPEG2</TargetName>
     <TargetExt>.vdplugin</TargetExt>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
@@ -66,6 +67,7 @@
     <Link>
       <ModuleDefinitionFile>MPEG2.def</ModuleDefinitionFile>
       <SubSystem>Windows</SubSystem>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -77,7 +79,6 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <OutputFile>$(OutDir)MPEG2$(TargetExt)</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
@@ -94,7 +95,6 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <OutputFile>$(OutDir)MPEG264$(TargetExt)</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
@@ -106,7 +106,6 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <OutputFile>$(OutDir)MPEG2$(TargetExt)</OutputFile>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
@@ -122,7 +121,6 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
-      <OutputFile>$(OutDir)MPEG264$(TargetExt)</OutputFile>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX64</TargetMachine>
