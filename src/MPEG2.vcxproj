@@ -60,7 +60,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\h;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
@@ -211,13 +211,13 @@
     <ClInclude Include="Priss\engine.h" />
     <ClInclude Include="Priss\polyphase.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Unknown.h" />
-    <ClInclude Include="vd2\plugin\vdinputdriver.h" />
-    <ClInclude Include="vd2\plugin\vdplugin.h" />
-    <ClInclude Include="vd2\Priss\convert.h" />
-    <ClInclude Include="vd2\Priss\decoder.h" />
-    <ClInclude Include="vd2\system\cpuaccel.h" />
-    <ClInclude Include="vd2\system\vdtypes.h" />
+    <ClInclude Include="h\vd2\VDXFrame\Unknown.h" />
+    <ClInclude Include="h\vd2\plugin\vdinputdriver.h" />
+    <ClInclude Include="h\vd2\plugin\vdplugin.h" />
+    <ClInclude Include="h\vd2\Priss\convert.h" />
+    <ClInclude Include="h\vd2\Priss\decoder.h" />
+    <ClInclude Include="h\vd2\system\cpuaccel.h" />
+    <ClInclude Include="h\vd2\system\vdtypes.h" />
     <ClInclude Include="video.h" />
   </ItemGroup>
   <ItemGroup>

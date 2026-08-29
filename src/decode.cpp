@@ -29,7 +29,7 @@
 #include <stdio.h>
 
 #include "vd2/plugin/vdinputdriver.h"
-#include "Unknown.h"
+#include "vd2/VDXFrame/Unknown.h"
 
 #include "infile.h"
 #include "append.h"

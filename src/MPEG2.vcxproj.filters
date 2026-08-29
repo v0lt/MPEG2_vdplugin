@@ -124,13 +124,13 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Unknown.h">
+    <ClInclude Include="h\vd2\VDXFrame\Unknown.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="vd2\plugin\vdinputdriver.h">
+    <ClInclude Include="h\vd2\plugin\vdinputdriver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="vd2\plugin\vdplugin.h">
+    <ClInclude Include="h\vd2\plugin\vdplugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="video.h">
@@ -139,13 +139,13 @@
     <ClInclude Include="Priss\bitreader.h">
       <Filter>Priss</Filter>
     </ClInclude>
-    <ClInclude Include="vd2\Priss\convert.h">
+    <ClInclude Include="h\vd2\Priss\convert.h">
       <Filter>Priss</Filter>
     </ClInclude>
-    <ClInclude Include="vd2\system\cpuaccel.h">
+    <ClInclude Include="h\vd2\system\cpuaccel.h">
       <Filter>Priss</Filter>
     </ClInclude>
-    <ClInclude Include="vd2\Priss\decoder.h">
+    <ClInclude Include="h\vd2\Priss\decoder.h">
       <Filter>Priss</Filter>
     </ClInclude>
     <ClInclude Include="Priss\engine.h">
@@ -154,7 +154,7 @@
     <ClInclude Include="Priss\polyphase.h">
       <Filter>Priss</Filter>
     </ClInclude>
-    <ClInclude Include="vd2\system\vdtypes.h">
+    <ClInclude Include="h\vd2\system\vdtypes.h">
       <Filter>Priss</Filter>
     </ClInclude>
   </ItemGroup>
