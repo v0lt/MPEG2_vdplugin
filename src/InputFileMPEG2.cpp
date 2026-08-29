@@ -717,7 +717,7 @@ bool VDXAPIENTRY InputFileMPEG2::CreateOptions(const void *buf, uint32 len, IVDX
 
 void VDXAPIENTRY InputFileMPEG2::DisplayInfo(VDXHWND hwndParent)
 {
-    DialogBoxParamA(g_hModule, MAKEINTRESOURCEA(IDD_INFORMATION),
+	DialogBoxParamW(g_hModule, MAKEINTRESOURCEW(IDD_INFORMATION),
 		(HWND)hwndParent, InfoDlgProc, (LPARAM)this);
 }
 

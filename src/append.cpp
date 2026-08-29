@@ -523,7 +523,7 @@ void AppendDlg(AppendNames *an, inFile *pIn, bool bShowUI, HMODULE hModule, HWND
 
 	if (bShowUI) {
 		// Pop up the dialog
-		DialogBoxParamA(hModule, MAKEINTRESOURCEA(IDD_APPEND),
+		DialogBoxParamW(hModule, MAKEINTRESOURCEW(IDD_APPEND),
 			(HWND)hwndParent, AppendDlgProc, (LPARAM)an);
 	} else {
 		// Automated; no UI

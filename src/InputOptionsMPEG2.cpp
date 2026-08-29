@@ -2,6 +2,7 @@
 // MPEG-2 Plugin for VirtualDub 1.8.1+
 // Copyright (C) 2007-2012 fccHandler
 // Copyright (C) 1998-2012 Avery Lee
+// Copyright (C) 2026 v0lt
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -162,7 +163,7 @@ void InputOptionsMPEG2::InitDialogTitle(HWND hDlg, char *pTitle)
 
 void InputOptionsMPEG2::OptionsDlg(HWND hwndParent)
 {
-	DialogBoxParamA(g_hModule, MAKEINTRESOURCEA(IDD_OPTIONS),
+	DialogBoxParamW(g_hModule, MAKEINTRESOURCEW(IDD_OPTIONS),
 		hwndParent, OptionsDlgProc, (LPARAM)this);
 }
 

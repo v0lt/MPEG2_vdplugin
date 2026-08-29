@@ -1721,8 +1721,8 @@ void MPEGFileParser::Parse(HMODULE hModule) {
 
 	if ((parentPtr->uiFlags & IVDXInputFileDriver::kFlagQuiet) == 0) {
 		// pop up the dialog...
-		hWndStatus = CreateDialogParamA(hModule,
-			MAKEINTRESOURCEA(IDD_PROGRESS), hWndParent,
+		hWndStatus = CreateDialogParamW(hModule,
+			MAKEINTRESOURCEW(IDD_PROGRESS), hWndParent,
 			ParseDialogProc, (LPARAM)this);
 	}
 
