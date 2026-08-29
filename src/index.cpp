@@ -2,6 +2,7 @@
 // MPEG-2 Plugin for VirtualDub 1.8.1+
 // Copyright (C) 2007-2012 fccHandler
 // Copyright (C) 1998-2012 Avery Lee
+// Copyright (C) 2026 v0lt
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -292,7 +293,7 @@ bool InputFileMPEG2::ReadIndex20(inFile& idxFile, AppendNames *an)
 
 	// Legacy version 2.0 did not store matrix_coefficients, so
 	// use a default based on the presence of sequence_extension.
-	matrix_coefficients = (seq_ext != 0)? 1: 5;
+	matrix_coefficients = (seq_ext == 0 || height <= 576) ? 5 : 1;
 
 	// Legacy version 2.0 did not store the system version,
 	// so take a best guess (not guaranteed to be correct).

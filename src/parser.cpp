@@ -542,7 +542,7 @@ inline void MPEGVideoParser::extension_start_code()
 		progressive_sequence = (buf[1] >> 3) & 1;
 //		width  = (width  & 0xFFF) | ((buf[1] & 1) << 13) | ((buf[2] & 0x80) << 5);
 //		height = (height & 0xFFF) | ((buf[2] & 0x60) << 7);
-		matrix_coefficients = 1;
+		matrix_coefficients = (height <= 576) ? 5 : 1;
 		break;
 	}
 

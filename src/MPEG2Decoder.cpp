@@ -2,6 +2,7 @@
 // MPEG-2 Plugin for VirtualDub 1.8.1+
 // Copyright (C) 2007-2012 fccHandler
 // Copyright (C) 1998-2012 Avery Lee
+// Copyright (C) 2026 v0lt
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -799,7 +800,7 @@ void MPEG2Decoder::extension_and_user_data()
 				flush_buffer(8+7+12+1+8+1+2+5);
 				if (fAllowMatrixCoefficients)
 				{
-					matrix_coefficients = 1;
+					matrix_coefficients = (vertical_size <= 576) ? 5 : 1;
 				}
 				break;
 
