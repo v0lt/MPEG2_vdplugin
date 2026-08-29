@@ -2,6 +2,7 @@
 // MPEG-2 Plugin for VirtualDub 1.8.1+
 // Copyright (C) 2007-2012 fccHandler
 // Copyright (C) 1998-2012 Avery Lee
+// Copyright (C) 2026 v0lt
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -60,66 +61,6 @@ wchar_t *copy_string(const wchar_t *szString) {
 	return NULL;
 }
 
-static inline LPWSTR MyOpenDlgA(HWND hwndOwner) {
-	OPENFILENAMEA ofn;
-
-	// Wipe, then initialize the structure
-	int i = sizeof(ofn);
-	memset(&ofn, 0, i);
-	ofn.lStructSize = i;
-	ofn.hwndOwner = hwndOwner;
-
-	// Initialize lpstrFile
-	ofn.lpstrFile = new CHAR[(MAX_PATH + 1) * MAX_FILES];
-	if (ofn.lpstrFile == NULL) return NULL;
-	ofn.lpstrFile[0] = '\0';
-	ofn.nMaxFile = (MAX_PATH + 1) * MAX_FILES;
-
-	// Initialize lpstrFilter
-	ofn.lpstrFilter = inFile::wchar_to_ansi(szFilter, sizeof(szFilter) / sizeof(WCHAR));
-	ofn.nFilterIndex = findex;
-
-	// Initialize lpstrInitialDir from current file (if applicable)
-	if (szInitDir[0]) {
-		ofn.lpstrInitialDir = (LPSTR)szInitDir;
-	}
-
-	ofn.Flags = OFN_HIDEREADONLY | OFN_ALLOWMULTISELECT | OFN_EXPLORER;
-
-	i = (int)GetOpenFileNameA(&ofn);
-
-	delete[] (char *)ofn.lpstrFilter;
-
-	if (i) {
-		LPWSTR tmp;
-
-		// Copy the path (if any) to szInitDir
-		int len = lstrlenA(ofn.lpstrFile);
-		while (len > 3) {
-			CHAR c = ofn.lpstrFile[len - 1];
-			if (c != '\\' && c != '/') {
-				memcpy(szInitDir, ofn.lpstrFile, len);
-				break;
-			}
-			--len;
-		}
-		szInitDir[len] = L'\0';
-
-		// Convert to wide char in place
-		tmp = (LPWSTR)ofn.lpstrFile;
-		for (i = (MAX_PATH + 1) * MAX_FILES - 1; i >= 0; --i) {
-			tmp[i] = ofn.lpstrFile[i];
-		}
-	} else {
-		delete[] ofn.lpstrFile;
-		ofn.lpstrFile = NULL;
-	}
-
-	findex = ofn.nFilterIndex;
-
-	return (LPWSTR)(ofn.lpstrFile);
-}
-
 static inline LPWSTR MyOpenDlgW(HWND hwndOwner) {
 	OPENFILENAMEW ofn;
 
@@ -168,14 +109,6 @@ static inline LPWSTR MyOpenDlgW(HWND hwndOwner) {
 	findex = ofn.nFilterIndex;
 
 	return ofn.lpstrFile;
-}
-
-static inline LPWSTR MyOpenDlg(HWND hwndOwner) {
-	if (GetVersion() & 0x80000000) {
-		return MyOpenDlgA(hwndOwner);
-	} else {
-		return MyOpenDlgW(hwndOwner);
-	}
 }
 
 static bool AddString(AppendNames *an, int from_index, int to_index) {
@@ -272,7 +205,7 @@ static inline void DoSort(AppendNames *an) {
 
 static inline void DoAdd(AppendNames *an, HWND hDlg) {
 	if (an->num_files < MAX_FILES) {
-		LPWSTR tmp = MyOpenDlg(hDlg);
+		LPWSTR tmp = MyOpenDlgW(hDlg);
 
 		if (tmp != NULL) {
 			LPWSTR path = tmp;
@@ -414,7 +347,7 @@ static void AutoLoadVOBs(AppendNames *an) {
 	if (orig[len -  1] != L'B') goto Abort;
 	
 	// Input file (at least) must exist
-	h = inFile::dualCreateFile(orig, GENERIC_READ, FILE_SHARE_READ,
+	h = CreateFileW(orig, GENERIC_READ, FILE_SHARE_READ,
 		NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 		
 	if (h == INVALID_HANDLE_VALUE) goto Abort;
@@ -426,7 +359,7 @@ static void AutoLoadVOBs(AppendNames *an) {
 	for (i = anchor - 1; i >= L'1'; --i) {
 		orig[len - 5] = (WCHAR)i;
 
-		h = inFile::dualCreateFile(orig, GENERIC_READ, FILE_SHARE_READ,
+		h = CreateFileW(orig, GENERIC_READ, FILE_SHARE_READ,
 			NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
 		if (h == INVALID_HANDLE_VALUE) goto Abort;
@@ -437,7 +370,7 @@ static void AutoLoadVOBs(AppendNames *an) {
 	for (i = anchor + 1; i <= L'9'; ++i) {
 		orig[len - 5] = (WCHAR)i;
 
-		h = inFile::dualCreateFile(orig, GENERIC_READ, FILE_SHARE_READ,
+		h = CreateFileW(orig, GENERIC_READ, FILE_SHARE_READ,
 			NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
 		if (h == INVALID_HANDLE_VALUE) break;

@@ -2,6 +2,7 @@
 // MPEG-2 Plugin for VirtualDub 1.8.1+
 // Copyright (C) 2007-2012 fccHandler
 // Copyright (C) 1998-2012 Avery Lee
+// Copyright (C) 2026 v0lt
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -146,36 +147,6 @@ void inFile::inRefresh()
 }
 
 
-HANDLE inFile::dualCreateFile(LPCWSTR lpFileName, DWORD dwDesiredAccess,
-	DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes,
-	DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes,
-	HANDLE hTemplateFile)
-{
-	HANDLE h;
-
-	if (GetVersion() < 0x80000000U)
-	{
-		return CreateFileW(lpFileName, dwDesiredAccess, dwShareMode,
-			lpSecurityAttributes, dwCreationDisposition,
-			dwFlagsAndAttributes, hTemplateFile);
-	}
-
-	char *tmp = wchar_to_ansi(lpFileName, -1);
-
-	if (tmp != NULL)
-	{
-		h = CreateFileA(tmp, dwDesiredAccess, dwShareMode,
-			lpSecurityAttributes, dwCreationDisposition,
-			dwFlagsAndAttributes, hTemplateFile);
-
-		delete[] tmp;
-		return h;
-	}
-
-	return INVALID_HANDLE_VALUE;
-}
-
-
 bool inFile::inOpen(const wchar_t *szFile)
 {
 	DWORD dwLo, dwHi;
@@ -192,7 +163,7 @@ bool inFile::inOpen(const wchar_t *szFile)
 	pName = new WCHAR[len + 1];
 	if (pName == NULL) goto Abort;
 
-	h = dualCreateFile((LPWSTR)szFile, GENERIC_READ, FILE_SHARE_READ, NULL,
+	h = CreateFileW((LPWSTR)szFile, GENERIC_READ, FILE_SHARE_READ, NULL,
 		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, NULL);
 
 	if (h == INVALID_HANDLE_VALUE) goto Abort;
@@ -250,7 +221,7 @@ bool inFile::inAppend(const wchar_t *szFile)
 	if (szFile == NULL) goto Abort;
 	if (*szFile == 0) goto Abort;
 
-	h = dualCreateFile((LPWSTR)szFile, GENERIC_READ, FILE_SHARE_READ, NULL,
+	h = CreateFileW((LPWSTR)szFile, GENERIC_READ, FILE_SHARE_READ, NULL,
 		OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, NULL);
 
 	if (h == INVALID_HANDLE_VALUE) goto Abort;
@@ -417,7 +388,7 @@ bool inFile::outOpen(const wchar_t *szFile)
 	pName = new WCHAR[len + 1];
 	if (pName == NULL) goto Abort;
 
-	h = dualCreateFile((LPCWSTR)szFile, GENERIC_WRITE, FILE_SHARE_READ, NULL,
+	h = CreateFileW((LPCWSTR)szFile, GENERIC_WRITE, FILE_SHARE_READ, NULL,
 		OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN, NULL);
 
 	if (h == INVALID_HANDLE_VALUE) goto Abort;
