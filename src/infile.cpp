@@ -33,29 +33,6 @@
 #define INOFFSET(x)		(x & (BUF_SIZE-1))
 
 
-char* inFile::wchar_to_ansi(const wchar_t *szWchar, int len)
-{
-	char *tmp = NULL;
-	if (szWchar != NULL)
-	{
-		int lenA = WideCharToMultiByte(CP_ACP, 0, szWchar, len, NULL, 0, NULL, NULL);
-		if (lenA > 0)
-		{
-			tmp = new char[lenA];
-			if (tmp != NULL)
-			{
-				if (WideCharToMultiByte(CP_ACP, 0, szWchar, len, tmp, lenA, NULL, NULL) != lenA)
-				{
-					delete[] tmp;
-					tmp = NULL;
-				}
-			}
-		}
-	}
-	return tmp;
-}
-
-
 inFile::inFile()
 {
 	pFileName = NULL;

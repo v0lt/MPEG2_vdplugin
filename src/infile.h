@@ -46,8 +46,6 @@ public:
 	inFile();
 	~inFile();
 
-	static  char *wchar_to_ansi(const wchar_t *szWchar, int len);
-
 	bool    inOpen(const wchar_t *szFile);
 	bool    inAppend(const wchar_t *szFile);
 
