@@ -1,0 +1,13 @@
+MPEG-2 plugin history
+
+0.4.6 dev
+----------------------
+Improved Unicode support.
+Fixed setting of color space matrix coefficients if it is not specified in the video stream.
+If a MPEG-2 4:2:0 video stream is defined as interlaced, the plugin will output in interlaced format by default.
+The minimum supported version is VirtualDub 1.10.1 or later.
+
+
+Version 1.0 - 4.5
+----------------------
+https://gral.y0.pl/~fcchandler/Plugins/MPEG2/changelog.html
