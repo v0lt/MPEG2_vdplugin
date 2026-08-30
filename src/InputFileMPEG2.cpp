@@ -988,7 +988,7 @@ const VDXPluginInfo midx_info = {
 	L"MIDX",							// name of this plugin
 	L"fccHandler",						// author's name
 	L"Loads MPEG-2 index files.",		// plugin description
-	0x02010000,							// version = 2.1.0000
+	0x02020000,							// version = 2.2.0000
 	kVDXPluginType_Input,				// type of plugin = input
 	0,									// flags = 0
 	10,									// API version required
