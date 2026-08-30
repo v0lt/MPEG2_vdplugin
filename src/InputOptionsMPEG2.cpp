@@ -141,7 +141,7 @@ INT_PTR CALLBACK InputOptionsMPEG2::OptionsDlgProc(HWND hDlg, UINT message, WPAR
 }
 
 
-void InputOptionsMPEG2::InitDialogTitle(HWND hDlg, char *pTitle)
+void InputOptionsMPEG2::InitDialogTitle(HWND hDlg, const char *pTitle)
 {
 	char buf[64];
 	int i;

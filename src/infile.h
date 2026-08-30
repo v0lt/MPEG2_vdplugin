@@ -43,8 +43,8 @@ private:
 	void    outFlush();
 
 public:
-	inFile::inFile();
-	inFile::~inFile();
+	inFile();
+	~inFile();
 
 	static  char *wchar_to_ansi(const wchar_t *szWchar, int len);
 

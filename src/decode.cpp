@@ -592,7 +592,7 @@ using namespace nsVDXPixmap;
 
 static const struct {
 	int format;
-	char *name;
+	const char *name;
 } format_names[] = {
 	{ kPixFormat_Null,                  "kPixFormat_Null" },
 	{ kPixFormat_XRGB1555,              "kPixFormat_XRGB1555" },
