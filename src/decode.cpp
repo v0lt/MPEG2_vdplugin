@@ -674,12 +674,15 @@ bool VDXAPIENTRY VideoDecoderMPEG2::SetTargetFormat(int format, bool useDIBAlign
 			if ((h & 1) == 0 && chroma_format != CHROMA422)
 			{
 				// Width and height are even, format is 4:2:0
-				format = parentPtr->progressive_sequence ? kPixFormat_YUV420_Planar : kPixFormat_YUV420i_Planar;
+				if (parentPtr->matrix_coefficients == 1) {
+					format = parentPtr->progressive_sequence ? kPixFormat_YUV420_Planar_709 : kPixFormat_YUV420i_Planar_709;
+				} else {
+					format = parentPtr->progressive_sequence ? kPixFormat_YUV420_Planar : kPixFormat_YUV420i_Planar;
+				}
 			}
-			else
-			{
+			else {
 				// Height is odd, or format is 4:2:2
-				format = kPixFormat_YUV422_YUYV;
+				format = (parentPtr->matrix_coefficients == 1) ? kPixFormat_YUV422_YUYV_709 : kPixFormat_YUV422_YUYV;
 			}
 		}
 		else
