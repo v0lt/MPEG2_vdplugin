@@ -21,10 +21,6 @@
 
 // MPEG System, Video, and Audio Parsers
 
-#if defined(_MSC_VER) && (_MSC_VER >= 1400)
-	#define _CRT_SECURE_NO_WARNINGS
-#endif
-
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <commctrl.h>
@@ -1862,13 +1858,13 @@ INT_PTR CALLBACK MPEGFileParser::ParseDialogProc(HWND hDlg, UINT uMsg, WPARAM wP
 
 			if (thisPtr->fInterleaved)
 			{
-				_snprintf(buf, sizeof(buf),
+				_snprintf_s(buf, sizeof(buf),
 					"Parsing interleaved MPEG-%i file",
 					(thisPtr->fIsMPEG2)? 2: 1);
 			}
 			else
 			{
-				_snprintf(buf, sizeof(buf),
+				_snprintf_s(buf, sizeof(buf),
 					"Parsing MPEG-%i video file",
 					(thisPtr->fIsMPEG2)? 2: 1);
 			}
@@ -1891,7 +1887,7 @@ INT_PTR CALLBACK MPEGFileParser::ParseDialogProc(HWND hDlg, UINT uMsg, WPARAM wP
 			SendMessageW(GetDlgItem(hDlg, IDC_PROGRESS), PBM_SETPOS,
 				(WPARAM)((file_cpos * 16384) / file_len), 0);
 
-			_snprintf(buf, sizeof(buf),
+			_snprintf_s(buf, sizeof(buf),
 				"%I64iK of %I64iK",
 				file_cpos / 1024,
 				(file_len + 512) / 1024);

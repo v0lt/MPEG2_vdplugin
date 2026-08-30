@@ -21,10 +21,6 @@
 
 // IVDXVideoDecoder and IVDXVideoDecoderModel interfaces
 
-#if defined(_MSC_VER) && (_MSC_VER >= 1400)
-	#define _CRT_SECURE_NO_WARNINGS
-#endif
-
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <stdio.h>
