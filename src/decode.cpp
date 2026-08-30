@@ -2,6 +2,7 @@
 // MPEG-2 Plugin for VirtualDub 1.8.1+
 // Copyright (C) 2007-2012 fccHandler
 // Copyright (C) 1998-2012 Avery Lee
+// Copyright (C) 2026 v0lt
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -673,7 +674,7 @@ bool VDXAPIENTRY VideoDecoderMPEG2::SetTargetFormat(int format, bool useDIBAlign
 			if ((h & 1) == 0 && chroma_format != CHROMA422)
 			{
 				// Width and height are even, format is 4:2:0
-				format = kPixFormat_YUV420_Planar;
+				format = parentPtr->progressive_sequence ? kPixFormat_YUV420_Planar : kPixFormat_YUV420i_Planar;
 			}
 			else
 			{
