@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-// MPEG-2 Plugin for VirtualDub 1.8.1+
+// MPEG-2 Plugin for VirtualDub 1.10.1+
 // Copyright (C) 2007-2012 fccHandler
 // Copyright (C) 1998-2012 Avery Lee
 // Copyright (C) 2026 v0lt

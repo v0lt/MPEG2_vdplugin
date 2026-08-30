@@ -1,7 +1,7 @@
 MPEG-2 plugin v4.5 by fccHandler
 Released March 23, 2012
 
-This is version 4.5 of my MPEG-2 plugin for VirtualDub 1.8.1 and later
+This is version 4.6 of my MPEG-2 plugin for VirtualDub 1.10.1 and later
 versions.  This zip contains both the 32-bit and 64-bit builds of the
 plugin.  To use the 32-bit plugin, create a folder named "Plugins32"
 in VirtualDub's program folder, and place the "MPEG2.vdplugin" file into
