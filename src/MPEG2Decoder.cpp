@@ -4029,6 +4029,7 @@ bool MPEG2Decoder::ConvertFrame(const VDXPixmap& pm, int buffer)
 		case kPixFormat_YUV420_Planar_709:
 		case kPixFormat_YUV420_Planar_FR:
 		case kPixFormat_YUV420_Planar_709_FR:
+		case kPixFormat_YUV420i_Planar:
 			return ConvertTo420(pm, buffer, false);
 
 		case kPixFormat_YUV422_Planar:
@@ -4053,7 +4054,6 @@ bool MPEG2Decoder::ConvertFrame(const VDXPixmap& pm, int buffer)
 		case kPixFormat_YUV411_Planar_709_FR:
 			break;
 
-		case kPixFormat_YUV420i_Planar:
 		case kPixFormat_YUV420i_Planar_FR:
 		case kPixFormat_YUV420i_Planar_709:
 		case kPixFormat_YUV420i_Planar_709_FR:
