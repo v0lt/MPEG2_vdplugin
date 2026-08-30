@@ -483,7 +483,7 @@ void MPEG2Decoder::Destruct() {
 int MPEG2Decoder::show_bits(int nBits)
 {
 	const unsigned char *src = bitarray + (bitpos >> 3);
-	register unsigned int ret = 0;
+	unsigned int ret = 0;
 
 	// Note: ((remains + 7) >> 3) is how many BYTES remain!
 
@@ -517,7 +517,7 @@ int MPEG2Decoder::show_bits(int nBits)
 int MPEG2Decoder::get_bits(int nBits)
 {
 	const unsigned char *src = bitarray + (bitpos >> 3);
-	register unsigned int ret = 0;
+	unsigned int ret = 0;
 
 	if (nBits > 0 && nBits <= 24)
 	{
