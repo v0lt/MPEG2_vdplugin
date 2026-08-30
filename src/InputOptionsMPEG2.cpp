@@ -89,7 +89,7 @@ INT_PTR CALLBACK InputOptionsMPEG2::OptionsDlgProc(HWND hDlg, UINT message, WPAR
 	switch (message) {
 
 	case WM_INITDIALOG:
-		SetWindowLongPtrA(hDlg, DWLP_USER, lParam);
+		SetWindowLongPtrW(hDlg, DWLP_USER, lParam);
 		thisPtr = (InputOptionsMPEG2 *)lParam;
 		InputOptionsMPEG2::InitDialogTitle(hDlg, "Extended Options");
 		CheckDlgButton(hDlg, IDC_MULTIPLE,     thisPtr->opts.fMultipleOpen? BST_CHECKED: BST_UNCHECKED);
@@ -104,7 +104,7 @@ INT_PTR CALLBACK InputOptionsMPEG2::OptionsDlgProc(HWND hDlg, UINT message, WPAR
 		{
 			if (wChosen != IDCANCEL)
 			{
-				thisPtr = (InputOptionsMPEG2 *)GetWindowLongPtrA(hDlg, DWLP_USER);
+				thisPtr = (InputOptionsMPEG2 *)GetWindowLongPtrW(hDlg, DWLP_USER);
 
 				// fMultipleOpen is not saved to registry
 				thisPtr->opts.fMultipleOpen = false;

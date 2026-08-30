@@ -1842,15 +1842,16 @@ bool MPEGFileParser::guiDlgMessageLoop(HWND hDlg) {
 	return true;
 }
 
-INT_PTR CALLBACK MPEGFileParser::ParseDialogProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-	MPEGFileParser *thisPtr = (MPEGFileParser *)GetWindowLongPtrA(hDlg, DWLP_USER);
+INT_PTR CALLBACK MPEGFileParser::ParseDialogProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+	MPEGFileParser *thisPtr = (MPEGFileParser *)GetWindowLongPtrW(hDlg, DWLP_USER);
 	char buf[64];
 
 	switch(uMsg) {
 
 	case WM_INITDIALOG:
 		{
-			SetWindowLongPtrA(hDlg, DWLP_USER, lParam);
+			SetWindowLongPtrW(hDlg, DWLP_USER, lParam);
 			thisPtr = (MPEGFileParser *)lParam;
 			InputOptionsMPEG2::InitDialogTitle(hDlg, NULL);
 
