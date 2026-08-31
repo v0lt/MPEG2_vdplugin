@@ -752,7 +752,6 @@ bool VDXAPIENTRY VideoDecoderMPEG2::SetTargetFormat(int format, bool useDIBAlign
 		break;
 
 	case kPixFormat_Y8:
-	case kPixFormat_Y8_FR:
 		// Note: according to the SDK, we do not align the pitch
 		mPixmap.data		= mFrameBuffer;
 		mPixmap.palette		= NULL;
@@ -768,8 +767,6 @@ bool VDXAPIENTRY VideoDecoderMPEG2::SetTargetFormat(int format, bool useDIBAlign
 
 	case kPixFormat_YUV420_Planar:
 	case kPixFormat_YUV420_Planar_709:
-	case kPixFormat_YUV420_Planar_FR:
-	case kPixFormat_YUV420_Planar_709_FR:
 	case kPixFormat_YUV420i_Planar:
 	case kPixFormat_YUV420i_Planar_709:
 		// Width and height must be even
@@ -786,26 +783,16 @@ bool VDXAPIENTRY VideoDecoderMPEG2::SetTargetFormat(int format, bool useDIBAlign
 		mPixmap.pitch3		= w >> 1;
 		break;
 
-	case kPixFormat_YUV420i_Planar_FR:
-	case kPixFormat_YUV420i_Planar_709_FR:
 	case kPixFormat_YUV420it_Planar:
-	case kPixFormat_YUV420it_Planar_FR:
 	case kPixFormat_YUV420it_Planar_709:
-	case kPixFormat_YUV420it_Planar_709_FR:
 	case kPixFormat_YUV420ib_Planar:
-	case kPixFormat_YUV420ib_Planar_FR:
 	case kPixFormat_YUV420ib_Planar_709:
-	case kPixFormat_YUV420ib_Planar_709_FR:
 		return false;   // TODO, interlaced 4:2:0 formats
 
 	case kPixFormat_YUV422_YUYV:
 	case kPixFormat_YUV422_YUYV_709:
-	case kPixFormat_YUV422_YUYV_FR:
-	case kPixFormat_YUV422_YUYV_709_FR:
 	case kPixFormat_YUV422_UYVY:
 	case kPixFormat_YUV422_UYVY_709:
-	case kPixFormat_YUV422_UYVY_FR:
-	case kPixFormat_YUV422_UYVY_709_FR:
 		// Width must be even
 		if (w & 1) return false;
 		mPixmap.data		= mFrameBuffer;
@@ -822,8 +809,6 @@ bool VDXAPIENTRY VideoDecoderMPEG2::SetTargetFormat(int format, bool useDIBAlign
 
 	case kPixFormat_YUV422_Planar:
 	case kPixFormat_YUV422_Planar_709:
-	case kPixFormat_YUV422_Planar_FR:
-	case kPixFormat_YUV422_Planar_709_FR:
 		// Width must be even
 		if (w & 1) return false;
 		mPixmap.data		= mFrameBuffer;
@@ -840,8 +825,6 @@ bool VDXAPIENTRY VideoDecoderMPEG2::SetTargetFormat(int format, bool useDIBAlign
 
 	case kPixFormat_YUV444_Planar:
 	case kPixFormat_YUV444_Planar_709:
-	case kPixFormat_YUV444_Planar_FR:
-	case kPixFormat_YUV444_Planar_709_FR:
 		mPixmap.data		= mFrameBuffer;
 		mPixmap.palette		= NULL;
 		mPixmap.w			= w;
@@ -860,12 +843,8 @@ bool VDXAPIENTRY VideoDecoderMPEG2::SetTargetFormat(int format, bool useDIBAlign
 
 	case kPixFormat_YUV410_Planar:
 	case kPixFormat_YUV410_Planar_709:
-	case kPixFormat_YUV410_Planar_FR:
-	case kPixFormat_YUV410_Planar_709_FR:
 	case kPixFormat_YUV411_Planar:
 	case kPixFormat_YUV411_Planar_709:
-	case kPixFormat_YUV411_Planar_FR:
-	case kPixFormat_YUV411_Planar_709_FR:
 		return false;
 
 	case kPixFormat_VDXA_RGB:

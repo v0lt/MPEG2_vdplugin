@@ -4010,61 +4010,40 @@ bool MPEG2Decoder::ConvertFrame(const VDXPixmap& pm, int buffer)
 			return ConvertToRGB(pm, buffer, 32);
 
 		case kPixFormat_Y8:
-		case kPixFormat_Y8_FR:
 			return ConvertToY8(pm, buffer);
 
 		case kPixFormat_YUV422_YUYV:
 		case kPixFormat_YUV422_YUYV_709:
-		case kPixFormat_YUV422_YUYV_FR:
-		case kPixFormat_YUV422_YUYV_709_FR:
 			return ConvertToYUY2(pm, buffer);
 
 		case kPixFormat_YUV422_UYVY:
 		case kPixFormat_YUV422_UYVY_709:
-		case kPixFormat_YUV422_UYVY_FR:
-		case kPixFormat_YUV422_UYVY_709_FR:
 			return ConvertToUYVY(pm, buffer);
 
 		case kPixFormat_YUV420_Planar:
 		case kPixFormat_YUV420_Planar_709:
-		case kPixFormat_YUV420_Planar_FR:
-		case kPixFormat_YUV420_Planar_709_FR:
 		case kPixFormat_YUV420i_Planar:
 		case kPixFormat_YUV420i_Planar_709:
 			return ConvertTo420(pm, buffer, false);
 
 		case kPixFormat_YUV422_Planar:
 		case kPixFormat_YUV422_Planar_709:
-		case kPixFormat_YUV422_Planar_FR:
-		case kPixFormat_YUV422_Planar_709_FR:
 			return ConvertTo422P(pm, buffer);
 
 		case kPixFormat_YUV444_Planar:
 		case kPixFormat_YUV444_Planar_709:
-		case kPixFormat_YUV444_Planar_FR:
-		case kPixFormat_YUV444_Planar_709_FR:
 			return ConvertTo444P(pm, buffer);
 
 		case kPixFormat_YUV410_Planar:
 		case kPixFormat_YUV410_Planar_709:
-		case kPixFormat_YUV410_Planar_FR:
-		case kPixFormat_YUV410_Planar_709_FR:
 		case kPixFormat_YUV411_Planar:
 		case kPixFormat_YUV411_Planar_709:
-		case kPixFormat_YUV411_Planar_FR:
-		case kPixFormat_YUV411_Planar_709_FR:
 			break;
 
-		case kPixFormat_YUV420i_Planar_FR:
-		case kPixFormat_YUV420i_Planar_709_FR:
 		case kPixFormat_YUV420it_Planar:
-		case kPixFormat_YUV420it_Planar_FR:
 		case kPixFormat_YUV420it_Planar_709:
-		case kPixFormat_YUV420it_Planar_709_FR:
 		case kPixFormat_YUV420ib_Planar:
-		case kPixFormat_YUV420ib_Planar_FR:
 		case kPixFormat_YUV420ib_Planar_709:
-		case kPixFormat_YUV420ib_Planar_709_FR:
 			break;  // TODO, interlaced formats
 
 		case kPixFormat_VDXA_RGB:
