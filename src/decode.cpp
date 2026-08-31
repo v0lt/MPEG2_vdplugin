@@ -771,6 +771,7 @@ bool VDXAPIENTRY VideoDecoderMPEG2::SetTargetFormat(int format, bool useDIBAlign
 	case kPixFormat_YUV420_Planar_FR:
 	case kPixFormat_YUV420_Planar_709_FR:
 	case kPixFormat_YUV420i_Planar:
+	case kPixFormat_YUV420i_Planar_709:
 		// Width and height must be even
 		if ((w | h) & 1) return false;
 		mPixmap.data		= mFrameBuffer;
@@ -786,7 +787,6 @@ bool VDXAPIENTRY VideoDecoderMPEG2::SetTargetFormat(int format, bool useDIBAlign
 		break;
 
 	case kPixFormat_YUV420i_Planar_FR:
-	case kPixFormat_YUV420i_Planar_709:
 	case kPixFormat_YUV420i_Planar_709_FR:
 	case kPixFormat_YUV420it_Planar:
 	case kPixFormat_YUV420it_Planar_FR:
