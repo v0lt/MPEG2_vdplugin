@@ -3985,15 +3985,16 @@ const void *MPEG2Decoder::GetCrBuffer(int buffer, int& pitch)
 
 bool MPEG2Decoder::ConvertFrame(const VDXPixmap& pm, int buffer)
 {
-	using namespace nsVDXPixmap;
-
 	// Do ALL preliminary checks here, to avoid having
 	// to do the same checks in the converters.
 
+	if (!memblock || (unsigned)buffer >= MPEG_BUFFERS) {
+		return false;
+	}
+
 	// Note: VDXPixmap is always valid, since it is controlled by us.
-	
-	if (memblock == NULL) goto Abort;
-	if ((unsigned int)buffer >= MPEG_BUFFERS) goto Abort;
+
+	using namespace nsVDXPixmap;	
 
 	switch (pm.format) {
 
@@ -4033,27 +4034,7 @@ bool MPEG2Decoder::ConvertFrame(const VDXPixmap& pm, int buffer)
 		case kPixFormat_YUV444_Planar:
 		case kPixFormat_YUV444_Planar_709:
 			return ConvertTo444P(pm, buffer);
-
-		case kPixFormat_YUV410_Planar:
-		case kPixFormat_YUV410_Planar_709:
-		case kPixFormat_YUV411_Planar:
-		case kPixFormat_YUV411_Planar_709:
-			break;
-
-		case kPixFormat_YUV420it_Planar:
-		case kPixFormat_YUV420it_Planar_709:
-		case kPixFormat_YUV420ib_Planar:
-		case kPixFormat_YUV420ib_Planar_709:
-			break;  // TODO, interlaced formats
-
-		case kPixFormat_VDXA_RGB:
-		case kPixFormat_VDXA_YUV:
-		case kPixFormat_Null:
-		default:
-			break;
 	}
 
-Abort:
 	return false;
 }
-

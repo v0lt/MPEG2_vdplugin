@@ -783,12 +783,6 @@ bool VDXAPIENTRY VideoDecoderMPEG2::SetTargetFormat(int format, bool useDIBAlign
 		mPixmap.pitch3		= w >> 1;
 		break;
 
-	case kPixFormat_YUV420it_Planar:
-	case kPixFormat_YUV420it_Planar_709:
-	case kPixFormat_YUV420ib_Planar:
-	case kPixFormat_YUV420ib_Planar_709:
-		return false;   // TODO, interlaced 4:2:0 formats
-
 	case kPixFormat_YUV422_YUYV:
 	case kPixFormat_YUV422_YUYV_709:
 	case kPixFormat_YUV422_UYVY:
@@ -837,19 +831,8 @@ bool VDXAPIENTRY VideoDecoderMPEG2::SetTargetFormat(int format, bool useDIBAlign
 		mPixmap.pitch3		= w;
 		break;
 
-	// VirtualDub seems to silently convert from 4:2:2 (which
-	// we do support) to 4:1:0 and 4:1:1 internally, so at the
-	// moment we can get away with not supporting these directly.
-
-	case kPixFormat_YUV410_Planar:
-	case kPixFormat_YUV410_Planar_709:
-	case kPixFormat_YUV411_Planar:
-	case kPixFormat_YUV411_Planar_709:
-		return false;
-
-	case kPixFormat_VDXA_RGB:
-	case kPixFormat_VDXA_YUV:
 	default:
+		// unsupported formats
 		return false;
 	}
 
