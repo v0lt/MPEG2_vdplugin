@@ -107,8 +107,8 @@ typedef struct {
 } MPEGBuffer;
 
 
-class MPEG2Decoder : public IMPEG2Decoder {
-
+class MPEG2Decoder : public IMPEG2Decoder
+{
 private:
 	unsigned char *memblock;
 	const unsigned char *bitarray;
@@ -243,32 +243,32 @@ public:
 //	~MPEG2Decoder();
 	void Destruct();
 
-	// decoding
-	
-	bool Init(int width, int height, int seq_ext);
-	void EnableMatrixCoefficients(bool bEnable);
-	void EnableAcceleration(int level);
+	// IMPEG2Decoder
+	bool Init(int width, int height, int seq_ext) override;
 
-	bool IsMPEG2()         const { return (MPEG2_Flag != 0); }
-	int  GetChromaFormat() const { return chroma_format; }
-	int  GetErrorState()   const { return mErrorState; }
+	void EnableMatrixCoefficients(bool bEnable) override;
+	void EnableAcceleration(int level) override;
+
+	bool IsMPEG2()         const override { return (MPEG2_Flag != 0); }
+	int  GetChromaFormat() const override { return chroma_format; }
+	int  GetErrorState()   const override { return mErrorState; }
 	
 	int  DecodeFrame(const void *src, int len, int frame, int dst, int fwd, int rev);
 	
 	// framebuffer access
 	
-	int  GetFrameBuffer(int frame) const;
-	int  GetFrameNumber(int buffer) const;
-	void CopyFrameBuffer(int dst, int src, int frameno);
-	void SwapFrameBuffers(int dst, int src);
-	void ClearFrameBuffers();
+	int  GetFrameBuffer(int frame) const override;
+	int  GetFrameNumber(int buffer) const override;
+	void CopyFrameBuffer(int dst, int src, int frameno) override;
+	void SwapFrameBuffers(int dst, int src) override;
+	void ClearFrameBuffers() override;
 
-	const void *GetYBuffer(int buffer, int& pitch);
-	const void *GetCrBuffer(int buffer, int& pitch);
-	const void *GetCbBuffer(int buffer, int& pitch);
+	const void *GetYBuffer(int buffer, int& pitch) override;
+	const void *GetCrBuffer(int buffer, int& pitch) override;
+	const void *GetCbBuffer(int buffer, int& pitch) override;
 
-	void CopyField(int dst, int dstfield, int src, int srcfield);
-	bool ConvertFrame(const VDXPixmap& Pixmap, int buffer);
+	void CopyField(int dst, int dstfield, int src, int srcfield) override;
+	bool ConvertFrame(const VDXPixmap& Pixmap, int buffer) override;
 };
 
 #define SetError(x) mErrorState |= x

@@ -157,12 +157,15 @@ void MPEGAudioParser::Parse(const unsigned char *pData, int len, unsigned int pk
  *
  ************************************************************************/
 
-class AC3AudioParser : public MPEGAudioParser {
+class AC3AudioParser : public MPEGAudioParser
+{
 private:
 	unsigned short syncword;
 public:
 	AC3AudioParser();
-	void Parse(const unsigned char *pData, int len, unsigned int curpkt);
+
+	// MPEGAudioParser
+	void Parse(const unsigned char *pData, int len, unsigned int curpkt) override;
 };
 
 
@@ -234,10 +237,12 @@ void AC3AudioParser::Parse(const unsigned char *pData, int len, unsigned int pkt
  *
  ************************************************************************/
 
-class PCMAudioParser : public MPEGAudioParser {
+class PCMAudioParser : public MPEGAudioParser
+{
 public:
-	void Parse(const unsigned char *src, int len, unsigned int pkt);
-	void Finish();
+	// MPEGAudioParser
+	void Parse(const unsigned char *src, int len, unsigned int pkt) override;
+	void Finish() override;
 };
 
 

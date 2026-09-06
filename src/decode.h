@@ -22,8 +22,8 @@
 #ifndef _VIDEODECODERMPEG2_H_
 #define _VIDEODECODERMPEG2_H_
 
-class VideoDecoderMPEG2 : public vdxunknown<IVDXVideoDecoder> {
-
+class VideoDecoderMPEG2 : public vdxunknown<IVDXVideoDecoder>
+{
 private:
 	InputFileMPEG2* const parentPtr;
 	IMPEG2Decoder*  mpDecoder  = nullptr;
@@ -39,24 +39,23 @@ public:
 	VideoDecoderMPEG2(InputFileMPEG2 *pp);
 	~VideoDecoderMPEG2();
 
-	// IVDXVideoDecoder
-	const void*         VDXAPIENTRY DecodeFrame(const void *inputBuffer, uint32 data_len, bool is_preroll, sint64 sampleNumber, sint64 targetFrame);
-	uint32              VDXAPIENTRY GetDecodePadding();
-	void                VDXAPIENTRY Reset();
-	bool                VDXAPIENTRY IsFrameBufferValid();
-	const VDXPixmap&    VDXAPIENTRY GetFrameBuffer();
-	bool                VDXAPIENTRY SetTargetFormat(int format, bool useDIBAlignment);
-	bool                VDXAPIENTRY SetDecompressedFormat(const VDXBITMAPINFOHEADER *pbih);
-	bool                VDXAPIENTRY IsDecodable(sint64 sample_num);
-	const void*         VDXAPIENTRY GetFrameBufferBase();
+	bool Init();
 
-	// VideoDecoderMPEG2
-	bool    Init();
+	// IVDXVideoDecoder
+	const void*      VDXAPIENTRY DecodeFrame(const void *inputBuffer, uint32 data_len, bool is_preroll, sint64 sampleNumber, sint64 targetFrame) override;
+	uint32           VDXAPIENTRY GetDecodePadding() override;
+	void             VDXAPIENTRY Reset() override;
+	bool             VDXAPIENTRY IsFrameBufferValid() override;
+	const VDXPixmap& VDXAPIENTRY GetFrameBuffer() override;
+	bool             VDXAPIENTRY SetTargetFormat(int format, bool useDIBAlignment) override;
+	bool             VDXAPIENTRY SetDecompressedFormat(const VDXBITMAPINFOHEADER *pbih) override;
+	bool             VDXAPIENTRY IsDecodable(sint64 sample_num) override;
+	const void*      VDXAPIENTRY GetFrameBufferBase() override;
 };
 
 
-class VideoDecoderModelMPEG2 : public vdxunknown<IVDXVideoDecoderModel> {
-
+class VideoDecoderModelMPEG2 : public vdxunknown<IVDXVideoDecoderModel>
+{
 private:
 	InputFileMPEG2 *const parentPtr;
 
@@ -76,10 +75,10 @@ public:
 	~VideoDecoderModelMPEG2();
 
 	// IVDXVideoDecoderModel
-	void    VDXAPIENTRY Reset();
-	void    VDXAPIENTRY SetDesiredFrame(sint64 frame_num);
-	sint64  VDXAPIENTRY GetNextRequiredSample(bool& is_preroll);
-	int     VDXAPIENTRY GetRequiredCount();
+	void   VDXAPIENTRY Reset() override;
+	void   VDXAPIENTRY SetDesiredFrame(sint64 frame_num) override;
+	sint64 VDXAPIENTRY GetNextRequiredSample(bool& is_preroll) override;
+	int    VDXAPIENTRY GetRequiredCount() override;
 };
 
 

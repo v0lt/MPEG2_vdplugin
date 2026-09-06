@@ -183,8 +183,8 @@ unsigned MPEGAudioHeader::GetPayloadSizeL3() const {
 //
 ///////////////////////////////////////////////////////////////////////
 
-class AudioSourceMPEG2 : public vdxunknown<IVDXStreamSource>, public IVDXAudioSource, IVDMPEGAudioBitsource {
-
+class AudioSourceMPEG2 : public vdxunknown<IVDXStreamSource>, public IVDXAudioSource, IVDMPEGAudioBitsource
+{
 protected:
 	VDXWAVEFORMATEX mRawFormat;
 
@@ -212,29 +212,28 @@ public:
 	AudioSourceMPEG2(InputFileMPEG2 *const pp, const unsigned int stream_id);
 	~AudioSourceMPEG2();
 
-	int VDXAPIENTRY AddRef();
-	int VDXAPIENTRY Release();
-	void *VDXAPIENTRY AsInterface(uint32 iid);
+	// IVDXUnknown
+	int   VDXAPIENTRY AddRef() override;
+	int   VDXAPIENTRY Release() override;
+	void* VDXAPIENTRY AsInterface(uint32 iid) override;
 
-	void		VDXAPIENTRY GetStreamSourceInfo(VDXStreamSourceInfo&);
-	bool		VDXAPIENTRY Read(sint64 lStart, uint32 lCount, void *lpBuffer, uint32 cbBuffer, uint32 *lBytesRead, uint32 *lSamplesRead);
+	// IVDXStreamSource
+	void        VDXAPIENTRY GetStreamSourceInfo(VDXStreamSourceInfo&) override;
+	bool        VDXAPIENTRY Read(sint64 lStart, uint32 lCount, void *lpBuffer, uint32 cbBuffer, uint32 *lBytesRead, uint32 *lSamplesRead) override;
+	const void* VDXAPIENTRY GetDirectFormat() override;
+	int         VDXAPIENTRY GetDirectFormatLen() override;
+	ErrorMode   VDXAPIENTRY GetDecodeErrorMode() override;
+	void        VDXAPIENTRY SetDecodeErrorMode(ErrorMode mode) override;
+	bool        VDXAPIENTRY IsDecodeErrorModeSupported(ErrorMode mode) override;
+	bool        VDXAPIENTRY IsVBR() override;
+	sint64      VDXAPIENTRY TimeToPositionVBR(sint64 us) override;
+	sint64      VDXAPIENTRY PositionToTimeVBR(sint64 samples) override;
 
-	const void *VDXAPIENTRY GetDirectFormat();
-	int			VDXAPIENTRY GetDirectFormatLen();
+	// IVDXAudioSource
+	void VDXAPIENTRY GetAudioSourceInfo(VDXAudioSourceInfo& info) override;
 
-	ErrorMode VDXAPIENTRY GetDecodeErrorMode();
-	void VDXAPIENTRY SetDecodeErrorMode(ErrorMode mode);
-	bool VDXAPIENTRY IsDecodeErrorModeSupported(ErrorMode mode);
-
-	bool VDXAPIENTRY IsVBR();
-	sint64 VDXAPIENTRY TimeToPositionVBR(sint64 us);
-	sint64 VDXAPIENTRY PositionToTimeVBR(sint64 samples);
-
-	void VDXAPIENTRY GetAudioSourceInfo(VDXAudioSourceInfo& info);
-
-	// IVDMPEGAudioBitsource methods
-
-	int read(void *buffer, int bytes);
+	// IVDMPEGAudioBitsource
+	int read(void *buffer, int bytes) override;
 };
 
 // The following is for Priss:
@@ -536,30 +535,31 @@ int AudioSourceMPEG2::read(void *buffer, int bytes) {
 
 //////////////////////////////////////////////////////////////////////////
 
-class AudioSourceMPEG : public vdxunknown<IVDXStreamSource>, public IVDXAudioSource {
+class AudioSourceMPEG : public vdxunknown<IVDXStreamSource>, public IVDXAudioSource
+{
 public:
 	AudioSourceMPEG(InputFileMPEG2 *const pp, unsigned int stream_id);
 	~AudioSourceMPEG();
 
-	int VDXAPIENTRY AddRef();
-	int VDXAPIENTRY Release();
-	void *VDXAPIENTRY AsInterface(uint32 iid);
+	// IVDXUnknown
+	int   VDXAPIENTRY AddRef() override;
+	int   VDXAPIENTRY Release() override;
+	void* VDXAPIENTRY AsInterface(uint32 iid) override;
 
-	void		VDXAPIENTRY GetStreamSourceInfo(VDXStreamSourceInfo&);
-	bool		VDXAPIENTRY Read(sint64 lStart, uint32 lCount, void *lpBuffer, uint32 cbBuffer, uint32 *lBytesRead, uint32 *lSamplesRead);
+	// IVDXStreamSource
+	void        VDXAPIENTRY GetStreamSourceInfo(VDXStreamSourceInfo&) override;
+	bool        VDXAPIENTRY Read(sint64 lStart, uint32 lCount, void *lpBuffer, uint32 cbBuffer, uint32 *lBytesRead, uint32 *lSamplesRead) override;
+	const void* VDXAPIENTRY GetDirectFormat() override;
+	int         VDXAPIENTRY GetDirectFormatLen() override;
+	ErrorMode   VDXAPIENTRY GetDecodeErrorMode() override;
+	void        VDXAPIENTRY SetDecodeErrorMode(ErrorMode mode) override;
+	bool        VDXAPIENTRY IsDecodeErrorModeSupported(ErrorMode mode) override;
+	bool        VDXAPIENTRY IsVBR() override;
+	sint64      VDXAPIENTRY TimeToPositionVBR(sint64 us) override;
+	sint64      VDXAPIENTRY PositionToTimeVBR(sint64 samples) override;
 
-	const void *VDXAPIENTRY GetDirectFormat();
-	int			VDXAPIENTRY GetDirectFormatLen();
-
-	ErrorMode VDXAPIENTRY GetDecodeErrorMode();
-	void VDXAPIENTRY SetDecodeErrorMode(ErrorMode mode);
-	bool VDXAPIENTRY IsDecodeErrorModeSupported(ErrorMode mode);
-
-	bool VDXAPIENTRY IsVBR();
-	sint64 VDXAPIENTRY TimeToPositionVBR(sint64 us);
-	sint64 VDXAPIENTRY PositionToTimeVBR(sint64 samples);
-
-	void VDXAPIENTRY GetAudioSourceInfo(VDXAudioSourceInfo& info);
+	// IVDXAudioSource
+	void VDXAPIENTRY GetAudioSourceInfo(VDXAudioSourceInfo& info) override;
 
 protected:
 	char *mRawFormat = nullptr;
@@ -1077,30 +1077,31 @@ int ac3_sync_info(const unsigned long hdr, long *srate, int *brate, int *chans) 
 }
 
 
-class AudioSourceAC3 : public vdxunknown<IVDXStreamSource>, public IVDXAudioSource {
+class AudioSourceAC3 : public vdxunknown<IVDXStreamSource>, public IVDXAudioSource
+{
 public:
 	AudioSourceAC3(InputFileMPEG2 *const pp, const unsigned int stream_id);
 	~AudioSourceAC3();
 
-	int VDXAPIENTRY AddRef();
-	int VDXAPIENTRY Release();
-	void *VDXAPIENTRY AsInterface(uint32 iid);
+	// IVDXUnknown
+	int   VDXAPIENTRY AddRef() override;
+	int   VDXAPIENTRY Release() override;
+	void* VDXAPIENTRY AsInterface(uint32 iid) override;
 
-	void		VDXAPIENTRY GetStreamSourceInfo(VDXStreamSourceInfo&);
-	bool		VDXAPIENTRY Read(sint64 lStart, uint32 lCount, void *lpBuffer, uint32 cbBuffer, uint32 *lBytesRead, uint32 *lSamplesRead);
+	// IVDXStreamSource
+	void        VDXAPIENTRY GetStreamSourceInfo(VDXStreamSourceInfo&) override;
+	bool        VDXAPIENTRY Read(sint64 lStart, uint32 lCount, void *lpBuffer, uint32 cbBuffer, uint32 *lBytesRead, uint32 *lSamplesRead) override;
+	const void* VDXAPIENTRY GetDirectFormat() override;
+	int         VDXAPIENTRY GetDirectFormatLen() override;
+	ErrorMode   VDXAPIENTRY GetDecodeErrorMode() override;
+	void        VDXAPIENTRY SetDecodeErrorMode(ErrorMode mode) override;
+	bool        VDXAPIENTRY IsDecodeErrorModeSupported(ErrorMode mode) override;
+	bool        VDXAPIENTRY IsVBR() override;
+	sint64      VDXAPIENTRY TimeToPositionVBR(sint64 us) override;
+	sint64      VDXAPIENTRY PositionToTimeVBR(sint64 samples) override;
 
-	const void *VDXAPIENTRY GetDirectFormat();
-	int			VDXAPIENTRY GetDirectFormatLen();
-
-	ErrorMode VDXAPIENTRY GetDecodeErrorMode();
-	void VDXAPIENTRY SetDecodeErrorMode(ErrorMode mode);
-	bool VDXAPIENTRY IsDecodeErrorModeSupported(ErrorMode mode);
-
-	bool VDXAPIENTRY IsVBR();
-	sint64 VDXAPIENTRY TimeToPositionVBR(sint64 us);
-	sint64 VDXAPIENTRY PositionToTimeVBR(sint64 samples);
-
-	void VDXAPIENTRY GetAudioSourceInfo(VDXAudioSourceInfo& info);
+	// IVDXAudioSource
+	void VDXAPIENTRY GetAudioSourceInfo(VDXAudioSourceInfo& info) override;
 
 protected:
 	VDXWAVEFORMATEX mRawFormat;
@@ -1268,30 +1269,31 @@ void VDXAPIENTRY AudioSourceAC3::GetAudioSourceInfo(VDXAudioSourceInfo& info) {
 //
 //////////////////////////////////////////////////////////////////////////
 
-class AudioSourceLPCM : public vdxunknown<IVDXStreamSource>, public IVDXAudioSource {
+class AudioSourceLPCM : public vdxunknown<IVDXStreamSource>, public IVDXAudioSource
+{
 public:
 	AudioSourceLPCM(InputFileMPEG2 *const pp, const unsigned int stream_id);
 	~AudioSourceLPCM();
 
-	int VDXAPIENTRY AddRef();
-	int VDXAPIENTRY Release();
-	void *VDXAPIENTRY AsInterface(uint32 iid);
+	// IVDXUnknown
+	int   VDXAPIENTRY AddRef() override;
+	int   VDXAPIENTRY Release() override;
+	void* VDXAPIENTRY AsInterface(uint32 iid) override;
 
-	void		VDXAPIENTRY GetStreamSourceInfo(VDXStreamSourceInfo&);
-	bool		VDXAPIENTRY Read(sint64 lStart, uint32 lCount, void *lpBuffer, uint32 cbBuffer, uint32 *lBytesRead, uint32 *lSamplesRead);
+	// IVDXStreamSource
+	void        VDXAPIENTRY GetStreamSourceInfo(VDXStreamSourceInfo&) override;
+	bool        VDXAPIENTRY Read(sint64 lStart, uint32 lCount, void *lpBuffer, uint32 cbBuffer, uint32 *lBytesRead, uint32 *lSamplesRead) override;
+	const void* VDXAPIENTRY GetDirectFormat() override;
+	int         VDXAPIENTRY GetDirectFormatLen() override;
+	ErrorMode   VDXAPIENTRY GetDecodeErrorMode() override;
+	void        VDXAPIENTRY SetDecodeErrorMode(ErrorMode mode) override;
+	bool        VDXAPIENTRY IsDecodeErrorModeSupported(ErrorMode mode) override;
+	bool        VDXAPIENTRY IsVBR() override;
+	sint64      VDXAPIENTRY TimeToPositionVBR(sint64 us) override;
+	sint64      VDXAPIENTRY PositionToTimeVBR(sint64 samples) override;
 
-	const void *VDXAPIENTRY GetDirectFormat();
-	int			VDXAPIENTRY GetDirectFormatLen();
-
-	ErrorMode VDXAPIENTRY GetDecodeErrorMode();
-	void VDXAPIENTRY SetDecodeErrorMode(ErrorMode mode);
-	bool VDXAPIENTRY IsDecodeErrorModeSupported(ErrorMode mode);
-
-	bool VDXAPIENTRY IsVBR();
-	sint64 VDXAPIENTRY TimeToPositionVBR(sint64 us);
-	sint64 VDXAPIENTRY PositionToTimeVBR(sint64 samples);
-
-	void VDXAPIENTRY GetAudioSourceInfo(VDXAudioSourceInfo& info);
+	// IVDXAudioSource
+	void VDXAPIENTRY GetAudioSourceInfo(VDXAudioSourceInfo& info) override;
 
 protected:
 	VDXWAVEFORMATEX mRawFormat;

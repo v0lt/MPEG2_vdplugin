@@ -94,8 +94,8 @@ typedef struct {
 
 class MPEGFileParser;
 
-class InputFileMPEG2 : public vdxunknown<IVDXInputFile> {
-
+class InputFileMPEG2 : public vdxunknown<IVDXInputFile>
+{
 friend MPEGFileParser;
 
 private:
@@ -151,13 +151,13 @@ public:
 	~InputFileMPEG2();
 
 	// IVDXInputFile
-	bool    VDXAPIENTRY PromptForOptions(VDXHWND, IVDXInputOptions **ppOptions);
-	bool    VDXAPIENTRY CreateOptions(const void *buf, uint32 len, IVDXInputOptions **ppOptions);
-	void    VDXAPIENTRY Init(const wchar_t *path, IVDXInputOptions *options);
-	bool    VDXAPIENTRY Append(const wchar_t *path);
-	void    VDXAPIENTRY DisplayInfo(VDXHWND hwndParent);
-	bool    VDXAPIENTRY GetVideoSource(int index, IVDXVideoSource **ppVS);
-	bool    VDXAPIENTRY GetAudioSource(int index, IVDXAudioSource **ppAS);
+	bool    VDXAPIENTRY PromptForOptions(VDXHWND, IVDXInputOptions **ppOptions) override;
+	bool    VDXAPIENTRY CreateOptions(const void *buf, uint32 len, IVDXInputOptions **ppOptions) override;
+	void    VDXAPIENTRY Init(const wchar_t *path, IVDXInputOptions *options) override;
+	bool    VDXAPIENTRY Append(const wchar_t *path) override;
+	void    VDXAPIENTRY DisplayInfo(VDXHWND hwndParent) override;
+	bool    VDXAPIENTRY GetVideoSource(int index, IVDXVideoSource **ppVS) override;
+	bool    VDXAPIENTRY GetAudioSource(int index, IVDXAudioSource **ppAS) override;
 
 	const   VDXInputDriverContext& mContext;
 

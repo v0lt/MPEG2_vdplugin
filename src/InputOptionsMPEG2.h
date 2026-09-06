@@ -30,7 +30,7 @@ public:
 	InputOptionsMPEG2();
 
 	// IVDXInputOptions
-	uint32  VDXAPIENTRY Write(void *buf, uint32 buflen);
+	uint32  VDXAPIENTRY Write(void *buf, uint32 buflen) override;
 
 	void    OptionsDlg(HWND hwndParent);
 	static  void InitDialogTitle(HWND hDlg, const char *pTitle);

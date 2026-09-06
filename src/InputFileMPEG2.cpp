@@ -852,14 +852,15 @@ void InputFileMPEG2::ReadSample(void *buffer, unsigned int sample, int len, int 
  ************************************************************************/
 
 
-class InputFileDriverMPEG2 : public vdxunknown<IVDXInputFileDriver> {
+class InputFileDriverMPEG2 : public vdxunknown<IVDXInputFileDriver>
+{
 public:
 	InputFileDriverMPEG2(const VDXInputDriverContext& context);
 	~InputFileDriverMPEG2();
 
 	// IVDXInputFileDriver
-	int     VDXAPIENTRY DetectBySignature(const void *pHeader, sint32 nHeaderSize, const void *pFooter, sint32 nFooterSize, sint64 nFileSize);
-	bool    VDXAPIENTRY CreateInputFile(uint32 flags, IVDXInputFile **ppFile);
+	int  VDXAPIENTRY DetectBySignature(const void *pHeader, sint32 nHeaderSize, const void *pFooter, sint32 nFooterSize, sint64 nFileSize) override;
+	bool VDXAPIENTRY CreateInputFile(uint32 flags, IVDXInputFile **ppFile) override;
 
 protected:
 	const VDXInputDriverContext& mContext;
