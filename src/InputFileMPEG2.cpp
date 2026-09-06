@@ -63,22 +63,12 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
  ************************************************************************/
 
 InputFileMPEG2::InputFileMPEG2(const VDXInputDriverContext& context, uint32 flags)
-	: mContext  (context)
-	, uiFlags   (flags)
+	: mContext(context)
+	, uiFlags(flags)
 {
 _RPT0(_CRT_WARN, "InputFileMPEG2 constructed\n");
 
 	// NULL all pointers before calling Cleanup!
-    video_packet_list   = NULL;
-	video_sample_list   = NULL;
-	video_field_map     = NULL;
-
-	for (int i = 0; i < 48; ++i)
-	{
-		audio_packet_list[i] = NULL;
-		audio_sample_list[i] = NULL;
-	}
-
 	Cleanup();
 }
 

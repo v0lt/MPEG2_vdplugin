@@ -56,10 +56,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 VideoDecoderMPEG2::VideoDecoderMPEG2(InputFileMPEG2 *const pp)
-	: parentPtr     (pp)
-	, mpDecoder     (NULL)
-	, pMemBlock     (NULL)
-	, mFrameBuffer  (NULL)
+	: parentPtr(pp)
 {
 _RPT0(_CRT_WARN, "VideoDecoderMPEG2 constructed\n");
 

@@ -64,13 +64,13 @@
 
 class MPEGAudioParser {
 private:
-	unsigned int    lFirstHeader;
+	unsigned int   lFirstHeader = 0;
 
 protected:
-	unsigned int    header;
-	MPEGSampleInfo  msi;
-	int             bytes;
-	int             skip;
+	unsigned int   header = 0;
+	MPEGSampleInfo msi    = {};
+	int            bytes  = 0;
+	int            skip   = 0;
 
 public:
 	MPEGAudioParser();
@@ -84,12 +84,8 @@ public:
 
 
 MPEGAudioParser::MPEGAudioParser()
-	: audio_stream_blocks   (sizeof(MPEGPacketInfo))
-	, audio_stream_samples  (sizeof(MPEGSampleInfo))
-	, lFirstHeader          (0)
-	, header                (0)
-	, bytes                 (0)
-	, skip                  (0)
+	: audio_stream_blocks (sizeof(MPEGPacketInfo))
+	, audio_stream_samples(sizeof(MPEGSampleInfo))
 {
 }
 
@@ -316,36 +312,36 @@ void PCMAudioParser::Finish()
 class MPEGVideoParser {
 
 private:
-	unsigned char   buf[8];
-	MPEGSampleInfo  msi;
-	__int64         bytepos;
-	__int64         last_access_unit;
-	unsigned int    header;
+	unsigned char  buf[8]  = {};
+	MPEGSampleInfo msi     = {};
+	__int64        bytepos = 0;
+	__int64        last_access_unit = -1i64;
+	unsigned int   header  = 0xFFFFFFFF;
 
-	int     idx;
-	int     bytes;
+	int  idx   = 0;
+	int  bytes = 0;
 
-	bool    fPicturePending;
-	bool    fFoundSequenceStart;
-	bool    fFoundSeqDispExt;
+	bool fPicturePending     = false;
+	bool fFoundSequenceStart = false;
+	bool fFoundSeqDispExt    = false;
 
-	bool    sequence_header();
-	bool    picture_start_code();
-	void    extension_start_code();
+	bool sequence_header();
+	bool picture_start_code();
+	void extension_start_code();
 
 public:
 
-	VDXFraction mFrameRate;
+	VDXFraction mFrameRate = { 1, 1 };
 	DataVector  video_stream_samples;
 
-	int             width;
-	int             height;
-	int             display_width;
-	int             display_height;
-	unsigned int    seq_ext;
-	int             aspect_ratio_info;
-	bool            progressive_sequence;
-	int             matrix_coefficients;
+	int          width                = 0;
+	int          height               = 0;
+	int          display_width        = 0;
+	int          display_height       = 0;
+	unsigned int seq_ext              = 0;
+	int          aspect_ratio_info    = 0;
+	int          matrix_coefficients  = 0;
+	bool         progressive_sequence = false;
 
 	MPEGVideoParser();
 
@@ -354,26 +350,8 @@ public:
 
 
 MPEGVideoParser::MPEGVideoParser()
-	: video_stream_samples  (sizeof(MPEGSampleInfo))
-	, bytepos               (0)
-	, last_access_unit      (-1i64)
-	, idx                   (0)
-	, bytes                 (0)
-	, header                (0xFFFFFFFF)
-	, fPicturePending       (false)
-	, fFoundSequenceStart   (false)
-	, fFoundSeqDispExt      (false)
-	, width                 (0)
-	, height                (0)
-	, display_width         (0)
-	, display_height        (0)
-	, seq_ext               (0)
-	, aspect_ratio_info     (0)
-	, matrix_coefficients   (5)
+	: video_stream_samples(sizeof(MPEGSampleInfo))
 {
-	mFrameRate.mNumerator   = 1;
-	mFrameRate.mDenominator = 1;
-	msi.frame_type          = 0;
 }
 
 

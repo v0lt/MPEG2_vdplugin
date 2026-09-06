@@ -2,6 +2,7 @@
 // MPEG-2 Plugin for VirtualDub 1.10.1+
 // Copyright (C) 2007-2012 fccHandler
 // Copyright (C) 1998-2012 Avery Lee
+// Copyright (C) 2026 v0lt
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -561,7 +562,7 @@ public:
 	void VDXAPIENTRY GetAudioSourceInfo(VDXAudioSourceInfo& info);
 
 protected:
-	char *mRawFormat;
+	char *mRawFormat = nullptr;
 
 	InputFileMPEG2 *const parentPtr;
 	const unsigned int id;
@@ -572,13 +573,13 @@ private:
 
 	int mSamplesPerFrame;
 	uint32 mFrameSize;
-	int mFormatSize;
+	int    mFormatSize = 0;
 
-	uint32 prev_block;
-	uint32 cur_block;
-	sint64 cur_pos;
+	uint32 prev_block = -1;
+	uint32 cur_block  = 0;
+	sint64 cur_pos    = 0;
 
-	uint32 mLength;
+	uint32 mLength = 0;
 };
 
 
@@ -587,14 +588,6 @@ AudioSourceMPEG::AudioSourceMPEG(InputFileMPEG2 *const pp, unsigned int stream_i
 	, id(stream_id)
 {
 	parentPtr->AddRef();
-
-	mFormatSize = 0;
-	mRawFormat = NULL;
-	mLength = 0;
-
-	prev_block = -1;
-	cur_block = 0;
-	cur_pos = 0;
 
 	if (parentPtr->aframes[id] > 0) {
 		int layer;
@@ -1307,7 +1300,7 @@ private:
 	InputFileMPEG2 *const parentPtr;
 	const unsigned int id;
 
-	sint64 mLength;
+	sint64 mLength = 0;
 
 	// The output is in blocks of 1536 samples,
 	// always mono or stereo, and always 16-bit...
@@ -1333,10 +1326,7 @@ AudioSourceLPCM::AudioSourceLPCM(InputFileMPEG2 *const pp, const unsigned int st
 	: parentPtr(pp)
 	, id(stream_id)
 {
-	unsigned short hdr;
-
 	parentPtr->AddRef();
-	mLength = 0;
 
 _RPT0(_CRT_WARN, "AudioSourceLPCM constructed\n");
 
@@ -1360,7 +1350,7 @@ _RPT0(_CRT_WARN, "AudioSourceLPCM constructed\n");
 	// ........ ........ ........ ....x...	reserved
 	// ........ ........ ........ .....xxx	number of channels - 1
 
-	hdr = parentPtr->audio_sample_list[id][0].header;
+	unsigned short hdr = parentPtr->audio_sample_list[id][0].header;
 
 	mRawFormat.mFormatTag		= VDXWAVEFORMATEX::kFormatPCM;
 	mRawFormat.mChannels		= (hdr & 7)? 2: 1;

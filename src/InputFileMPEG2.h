@@ -103,14 +103,14 @@ private:
 	uint32          uiFlags;
 
 	// Video
-	MPEGPacketInfo* video_packet_list;
+	MPEGPacketInfo* video_packet_list = nullptr;
 	unsigned int    vpackets;
 	__int64         vfirstPTS;
 	unsigned int    lFirstCode;
 
 	// Audio
 	unsigned char   audio_stream_list[96];  // 0x80 to 0xDF
-	MPEGPacketInfo* audio_packet_list[48];
+	MPEGPacketInfo* audio_packet_list[48] = {};
 	unsigned int    apackets[48];
 	__int64         afirstPTS[48];
 
@@ -162,22 +162,22 @@ public:
 	const   VDXInputDriverContext& mContext;
 
 	// Audio samples and audio stream info
-	MPEGSampleInfo* audio_sample_list[48];
+	MPEGSampleInfo* audio_sample_list[48] = {};
 	unsigned int    aframes[48];
 	bool            fAllowDSC;
 
 	// Video samples and video stream info
-	MPEGSampleInfo* video_sample_list;
+	MPEGSampleInfo* video_sample_list = nullptr;
 	unsigned int    vframes;
 	unsigned int    largest_framesize;
 	unsigned int    width;
 	unsigned int    height;
-	unsigned int    display_width;
-	unsigned int    display_height;
+	unsigned int    display_width  = 0;
+	unsigned int    display_height = 0;
 	VDXFraction     mFrameRate;
 	int             aspect_ratio;   // aspect_ratio_information
 	unsigned int    seq_ext;
-	unsigned int*   video_field_map;
+	unsigned int*   video_field_map = nullptr;
 	unsigned int    fields;
 	bool            progressive_sequence;
 	bool            fAllowMatrix;
