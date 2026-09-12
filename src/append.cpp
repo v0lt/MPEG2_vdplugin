@@ -456,6 +456,7 @@ static INT_PTR APIENTRY AppendDlgProc(HWND hDlg, UINT message, WPARAM wParam, LP
 
 			case IDCANCEL:
 				fAbort = true;
+				[[fallthrough]];
 			case IDOK:
 				EndDialog(hDlg, TRUE);
 				return TRUE;
