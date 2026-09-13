@@ -668,9 +668,9 @@ bool VDXAPIENTRY VideoDecoderMPEG2::SetTargetFormat(int format, bool useDIBAlign
 			{
 				// Width and height are even, format is 4:2:0
 				if (parentPtr->matrix_coefficients == 1) {
-					format = parentPtr->progressive_sequence ? kPixFormat_YUV420_Planar_709 : kPixFormat_YUV420i_Planar_709;
+					format = parentPtr->detect_progressive ? kPixFormat_YUV420_Planar_709 : kPixFormat_YUV420i_Planar_709;
 				} else {
-					format = parentPtr->progressive_sequence ? kPixFormat_YUV420_Planar : kPixFormat_YUV420i_Planar;
+					format = parentPtr->detect_progressive ? kPixFormat_YUV420_Planar : kPixFormat_YUV420i_Planar;
 				}
 			}
 			else {

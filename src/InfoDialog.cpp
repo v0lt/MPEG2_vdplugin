@@ -452,9 +452,9 @@ void InputFileMPEG2::UpdateDlgVideo(HWND hDlg, unsigned int id)
 	}
 	
 	_snprintf(buf, sizeof(buf), "MPEG-%c, %s %s",
-		(thisPtr->seq_ext != 0)? '2': '1',
+		(thisPtr->seq_ext != 0) ? '2' : '1',
 		sz_chroma_formats[mc],
-		(i != 0)? "progressive": "interlaced");
+		(thisPtr->detect_progressive) ? "progressive" : "interlaced");
 
 	buf[sizeof(buf) - 1] = '\0';
 	SetDlgItemTextA(hDlg, IDC_CHROMA_FORMAT, buf);

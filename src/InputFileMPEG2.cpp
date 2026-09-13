@@ -622,6 +622,7 @@ bool InputFileMPEG2::PostInit()
 	// Now load the map
 	fields = count;
 	count  = 0;
+	unsigned interlace_count = 0;
 
 	j = 0;	// cadence
 	largest = 0;
@@ -630,11 +631,13 @@ bool InputFileMPEG2::PostInit()
 	{
 		const MPEGSampleInfo& m1 = video_sample_list[i];
 
-		if (m1.size > largest) largest = m1.size;
+		if (m1.size > largest) {
+			largest = m1.size;
+		}
 
-		if (   ( m1.bitflags & PICTUREFLAG_RFF)
-		    && ((m1.bitflags & 3) == FRAME_PICTURE)
-		    && ( m1.bitflags & PICTUREFLAG_PF))
+		const bool progressive = ((m1.bitflags & 3) == FRAME_PICTURE) && (m1.bitflags & PICTUREFLAG_PF);
+
+		if (progressive && (m1.bitflags & PICTUREFLAG_RFF))
 		{
 			// Add 1 progressive frame
 			video_field_map[count++] = i * 2 + j;
@@ -663,7 +666,14 @@ bool InputFileMPEG2::PostInit()
 		{
 			// 1 progressive frame, or 2 field pictures
 			video_field_map[count++] = i * 2 + j;
+			if (!progressive) {
+				interlace_count++;
+			}
 		}
+	}
+
+	if (interlace_count * 16 < count) {
+		detect_progressive = true;
 	}
 
     // Set video_packet_buffer to size of the largest frame

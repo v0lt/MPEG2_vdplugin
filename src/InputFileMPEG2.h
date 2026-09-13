@@ -180,6 +180,7 @@ public:
 	unsigned int*   video_field_map = nullptr;
 	unsigned int    fields;
 	bool            progressive_sequence;
+	bool            detect_progressive = false;
 	bool            fAllowMatrix;
 	int             matrix_coefficients;
 
