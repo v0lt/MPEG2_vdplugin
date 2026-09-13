@@ -833,7 +833,7 @@ inline bool MPEGFileParser::Verify()
 	unsigned long hdr;
 	long lFirstPES;
 	long lFirstSeq;
-    long count;
+	long count;
 	int i;
 
 //	fIsMPEG2 = false;
@@ -1109,9 +1109,9 @@ inline bool MPEGFileParser::Verify()
 		if ((i = Read()) == EOF) break;
 		hdr = (hdr << 8) + i;
 		++count;
-    }
+	}
 
-    if (lFirstCode < 0) {
+	if (lFirstCode < 0) {
 		// If we found at least one sequence header, use that
 		if (lFirstSeq != -1) {
 			lFirstCode = lFirstSeq;
@@ -1211,7 +1211,7 @@ bool MPEGFileParser::ParsePack(int stream_id) {
 						}
 					}
 				}
-            }
+			}
 
 			if (pack_length <= 0) {
 				// PES packet with no payload is not an error
@@ -1224,7 +1224,7 @@ bool MPEGFileParser::ParsePack(int stream_id) {
 			stream_id = 0x1E0;
 			pack_length = NON_INTERLEAVED_PACK_SIZE;
 		}
-        
+
 		if (stream_id == 0x1BD) {
 			// private_stream_1, AC3 or LPCM
 			
@@ -1367,7 +1367,7 @@ bool MPEGFileParser::ParsePack(int stream_id) {
 			}
 		}
 
-    } while (false);
+	} while (false);
 
 	if (pack_length > 0) return Skip(pack_length);
 	return complete;
@@ -1739,12 +1739,11 @@ void MPEGFileParser::Parse(HMODULE hModule) {
 		}
 	}
 
-    // Construct stream and packet lookup tables, and
+	// Construct stream and packet lookup tables, and
 	// transfer them to the parent (I don't like this, but...)
 
-	parentPtr->video_packet_list = (MPEGPacketInfo *)
-        video_stream_blocks.MakeArray();
-    parentPtr->vpackets = video_stream_blocks.Length();
+	parentPtr->video_packet_list = (MPEGPacketInfo*)video_stream_blocks.MakeArray();
+	parentPtr->vpackets = video_stream_blocks.Length();
 
 	if (fInterleaved) {
 		int id;
@@ -1772,22 +1771,21 @@ void MPEGFileParser::Parse(HMODULE hModule) {
 		}
 	}
 
-    parentPtr->video_sample_list = (MPEGSampleInfo *)
-        videoParser->video_stream_samples.MakeArray();
-    parentPtr->vframes = videoParser->video_stream_samples.Length();
+	parentPtr->video_sample_list = (MPEGSampleInfo*)videoParser->video_stream_samples.MakeArray();
+	parentPtr->vframes = videoParser->video_stream_samples.Length();
 
 	DoFixUps();
 
 	// Transfer the rest of the info
-	parentPtr->width = videoParser->width;
-	parentPtr->height = videoParser->height;
-	parentPtr->mFrameRate = videoParser->mFrameRate;
-	parentPtr->seq_ext = videoParser->seq_ext;
+	parentPtr->width                = videoParser->width;
+	parentPtr->height               = videoParser->height;
+	parentPtr->mFrameRate           = videoParser->mFrameRate;
+	parentPtr->seq_ext              = videoParser->seq_ext;
 	parentPtr->progressive_sequence = videoParser->progressive_sequence;
-	parentPtr->aspect_ratio = videoParser->aspect_ratio_info;
-	parentPtr->matrix_coefficients = videoParser->matrix_coefficients;
-	parentPtr->display_width = videoParser->display_width;
-	parentPtr->display_height = videoParser->display_height;
+	parentPtr->aspect_ratio         = videoParser->aspect_ratio_info;
+	parentPtr->matrix_coefficients  = videoParser->matrix_coefficients;
+	parentPtr->display_width        = videoParser->display_width;
+	parentPtr->display_height       = videoParser->display_height;
 
 //	parentPtr->fInterleaved = this->fInterleaved;
 	parentPtr->lFirstCode = this->lFirstCode;
@@ -1889,4 +1887,3 @@ INT_PTR CALLBACK MPEGFileParser::ParseDialogProc(HWND hDlg, UINT uMsg, WPARAM wP
 
 	return FALSE;
 }
-

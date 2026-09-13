@@ -105,8 +105,8 @@ void InputFileMPEG2::Cleanup()
 		aframes[i]   = 0;
 	}
 
-    delete[] video_packet_list;
-    video_packet_list = NULL;
+	delete[] video_packet_list;
+	video_packet_list = NULL;
 
 	fUserAborted            = false;
 
@@ -122,18 +122,18 @@ void InputFileMPEG2::Cleanup()
 #endif
 
 	mNumFiles               = 0;
-    fAllowDSC               = false;
-    vframes                 = 0;
-    largest_framesize       = 0;
-    width                   = 0;
-    height                  = 0;
-    mFrameRate.mNumerator   = 1;
-    mFrameRate.mDenominator = 1;
-    aspect_ratio            = 0;
-    seq_ext                 = 0;
-    fields                  = 0;
-    fAllowMatrix            = false;
-    matrix_coefficients     = 5;
+	fAllowDSC               = false;
+	vframes                 = 0;
+	largest_framesize       = 0;
+	width                   = 0;
+	height                  = 0;
+	mFrameRate.mNumerator   = 1;
+	mFrameRate.mDenominator = 1;
+	aspect_ratio            = 0;
+	seq_ext                 = 0;
+	fields                  = 0;
+	fAllowMatrix            = false;
+	matrix_coefficients     = 5;
 
 	system                  = 0;
 }
@@ -458,7 +458,7 @@ bool InputFileMPEG2::PostInit()
 		++i;
 	}
 
-    // Now bubble-sort the frames into display order,
+	// Now bubble-sort the frames into display order,
 	for (i = 1; i < vframes; ++i)
 	{
 		if (video_sample_list[i].frame_type == MPEG_FRAME_TYPE_B)
@@ -676,9 +676,9 @@ bool InputFileMPEG2::PostInit()
 		detect_progressive = true;
 	}
 
-    // Set video_packet_buffer to size of the largest frame
-    largest_framesize = (largest + 31) & -15;
-    return true;
+	// Set video_packet_buffer to size of the largest frame
+	largest_framesize = (largest + 31) & -15;
+	return true;
 }
 
 
@@ -921,7 +921,7 @@ const uint8 MPEG2_sig[] = {
 	0x00, 0xFF,
 	0x01, 0xFF,
 //	0xB2, 0xF6		// either 0x1B3 or 0x1BA
-    0x80, 0x80
+	0x80, 0x80
 };
 
 //	0010

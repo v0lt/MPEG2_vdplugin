@@ -230,13 +230,13 @@ private:
 	void HalfY(const void *src, int src_width, int src_height, int src_pitch, void *dst, int dst_width, int dst_height, int dst_pitch, bool progressive);
 
 	// VirtualDub converters
-        bool ConvertToRGB (const VDXPixmap& pm, int buffer, int bpp);
+		bool ConvertToRGB (const VDXPixmap& pm, int buffer, int bpp);
 inline  bool ConvertToY8  (const VDXPixmap& pm, int buffer);
-        bool ConvertTo420 (const VDXPixmap& pm, int buffer, bool interlace);
-inline  bool ConvertToYUY2(const VDXPixmap& pm, int buffer);
-inline  bool ConvertToUYVY(const VDXPixmap& pm, int buffer);
-inline  bool ConvertTo422P(const VDXPixmap& pm, int buffer);
-inline  bool ConvertTo444P(const VDXPixmap& pm, int buffer);
+		bool ConvertTo420 (const VDXPixmap& pm, int buffer, bool interlace);
+inline	bool ConvertToYUY2(const VDXPixmap& pm, int buffer);
+inline	bool ConvertToUYVY(const VDXPixmap& pm, int buffer);
+inline	bool ConvertTo422P(const VDXPixmap& pm, int buffer);
+inline	bool ConvertTo444P(const VDXPixmap& pm, int buffer);
 
 public:
 	MPEG2Decoder();
@@ -1584,7 +1584,7 @@ void MPEG2Decoder::Decode_MPEG1_Intra_Block(int comp)
 		if (sign) val = -val;
 
 		blk[j] = (short)val;
-    }
+	}
 }
 
 
@@ -3304,15 +3304,15 @@ inline void MPEG2Decoder::conv444toRGB(
 	// dst_pitch is the pitch, and it can be negative!
 	// If so, _dst points at the END of the bitmap
 
-    const int crv  = Inverse_Table_6_9[matrix_coefficients & 7][0];
-    const int cbu  = Inverse_Table_6_9[matrix_coefficients & 7][1];
-    const int cgu  = Inverse_Table_6_9[matrix_coefficients & 7][2];
-    const int cgv  = Inverse_Table_6_9[matrix_coefficients & 7][3];
-    const int radd = Inverse_Table_6_9[matrix_coefficients & 7][4];
-    const int gadd = Inverse_Table_6_9[matrix_coefficients & 7][5];
-    const int badd = Inverse_Table_6_9[matrix_coefficients & 7][6];
+	const int crv  = Inverse_Table_6_9[matrix_coefficients & 7][0];
+	const int cbu  = Inverse_Table_6_9[matrix_coefficients & 7][1];
+	const int cgu  = Inverse_Table_6_9[matrix_coefficients & 7][2];
+	const int cgv  = Inverse_Table_6_9[matrix_coefficients & 7][3];
+	const int radd = Inverse_Table_6_9[matrix_coefficients & 7][4];
+	const int gadd = Inverse_Table_6_9[matrix_coefficients & 7][5];
+	const int badd = Inverse_Table_6_9[matrix_coefficients & 7][6];
 
-    const unsigned char *clipper  = myclipper  + 290;
+	const unsigned char *clipper  = myclipper  + 290;
 	const unsigned char *clipper2 = myclipper2 + 38;
 	const unsigned char *clipper3 = myclipper3 + 44;
 

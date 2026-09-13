@@ -238,7 +238,7 @@ void InputFileMPEG2::UpdateDlgAudio(HWND hDlg, unsigned int index)
 		);
 
 		dur = (double)pInfo.i64AudioSize / (2.0 * srate);
-    }
+	}
 
 	buf[sizeof(buf) - 1] = '\0';
 	SetDlgItemTextA(hDlg, IDC_AUDIO_FORMAT, buf);
@@ -336,7 +336,7 @@ void InputFileMPEG2::UpdateDlgVideo(HWND hDlg, unsigned int id)
 		"DAR = 15 (reserved)"
 	};
 
-    static const UINT uiCtlIds[3] = {
+	static const UINT uiCtlIds[3] = {
 		IDC_VIDEO_IFRAMES,
 		IDC_VIDEO_PFRAMES,
 		IDC_VIDEO_BFRAMES
@@ -547,7 +547,7 @@ void InputFileMPEG2::UpdateDlgVideo(HWND hDlg, unsigned int id)
 		pInfo.uiFrameCnt[1], pInfo.uiFrameCnt[2]);
 
 	buf[sizeof(buf) - 1] = '\0';				
-    SetDlgItemTextA(hDlg, IDC_VIDEO_FRAMETYPECNT, buf);
+	SetDlgItemTextA(hDlg, IDC_VIDEO_FRAMETYPECNT, buf);
 
 /***************************************************************************
  *      I-frame min/avg/max/total frame size:
@@ -617,7 +617,7 @@ INT_PTR CALLBACK InputFileMPEG2::InfoDlgProc(HWND hDlg, UINT message, WPARAM wPa
 
 	switch (message) {
 
-    case WM_INITDIALOG:
+	case WM_INITDIALOG:
 		SetWindowLongPtr(hDlg, DWLP_USER, lParam);
 		thisPtr = (InputFileMPEG2 *)lParam;
 
@@ -675,8 +675,7 @@ INT_PTR CALLBACK InputFileMPEG2::InfoDlgProc(HWND hDlg, UINT message, WPARAM wPa
 		}
 		break;
 
-    }
+	}
 
-    return FALSE;
+	return FALSE;
 }
-

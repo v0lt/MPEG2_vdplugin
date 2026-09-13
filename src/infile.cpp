@@ -172,7 +172,7 @@ bool inFile::inOpen(const wchar_t *szFile)
 	ret = true;
 
 Abort:
-    return ret;
+	return ret;
 
 Abort2:
 	CloseHandle(h);
@@ -216,7 +216,7 @@ bool inFile::inAppend(const wchar_t *szFile)
 	ret = true;
 
 Abort:
-    return ret;
+	return ret;
 
 Abort2:
 	CloseHandle(h);
@@ -394,7 +394,7 @@ bool inFile::outOpen(const wchar_t *szFile)
 	ret = true;
 
 Abort:
-    return ret;
+	return ret;
 }
 
 
@@ -433,4 +433,3 @@ long inFile::outWrite(const void *lpBuffer, long lBytes)
 Abort:
 	return ret;
 }
-

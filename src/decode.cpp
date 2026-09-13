@@ -906,7 +906,7 @@ sint64 VideoDecoderModelMPEG2::prev_field_IP(sint64 f64) const
 		}
 	}
 
-    return -1;
+	return -1;
 }
 
 
@@ -925,7 +925,7 @@ sint64 VideoDecoderModelMPEG2::next_field_IP(sint64 f64) const
 		}
 	}
 
-    return -1;
+	return -1;
 }
 
 
@@ -1437,4 +1437,3 @@ int VDXAPIENTRY VideoDecoderModelMPEG2::GetRequiredCount()
 
 	return needed;
 }
-

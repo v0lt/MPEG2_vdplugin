@@ -402,7 +402,7 @@ static INT_PTR APIENTRY AppendDlgProc(HWND hDlg, UINT message, WPARAM wParam, LP
 
 	switch (message) {
 
-    case WM_INITDIALOG:
+	case WM_INITDIALOG:
 		{
 			int i;
 			bool IsDVD = false;
@@ -483,9 +483,9 @@ static INT_PTR APIENTRY AppendDlgProc(HWND hDlg, UINT message, WPARAM wParam, LP
 		}
 		break;
 
-    }
+	}
 
-    return FALSE;
+	return FALSE;
 }
 
 
@@ -562,4 +562,3 @@ void AppendDlg(AppendNames *an, inFile *pIn, bool bShowUI, HMODULE hModule, HWND
 Abort:
 	delete[] orig;
 }
-

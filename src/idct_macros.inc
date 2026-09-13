@@ -80,7 +80,7 @@
 
 	pslld		mm7, 16
 	movq		[%%dst], mm1
-                        
+
 	por			mm7, mm4
 	movq		[%%dst+8], mm7
 
@@ -292,4 +292,3 @@
 	movq		[%%dst+4*16], mm6
 
 %endmacro
-

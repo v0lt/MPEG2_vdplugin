@@ -1515,7 +1515,7 @@ done:
 }
 
 inline void AudioSourceLPCM::LPCM20S_to_WAVE16S(void *src, int len) {
-    __asm {
+	__asm {
 		mov		esi, src
 		mov		ecx, len
 		mov		edi, esi
@@ -1571,7 +1571,7 @@ done:
 }
 
 inline void AudioSourceLPCM::LPCM20M_to_WAVE16M(void *src, int len) {
-    __asm {
+	__asm {
 		mov		esi, src
 		mov		ecx, len
 		mov		edi, esi
@@ -1607,7 +1607,7 @@ done:
 }
 
 inline void AudioSourceLPCM::LPCM24M_to_WAVE16M(void *src, int len) {
-    __asm {
+	__asm {
 		mov		esi, src
 		mov		ecx, len
 		mov		edi, esi
@@ -1643,7 +1643,7 @@ done:
 }
 
 inline void AudioSourceLPCM::LPCM24S_to_WAVE16S(void *src, int len) {
-    __asm {
+	__asm {
 		mov		esi, src
 		mov		ecx, len
 		mov		edi, esi
@@ -1843,4 +1843,3 @@ IVDXAudioSource *CreateAudioSourceLPCM(InputFileMPEG2 *const pp, const unsigned 
 IVDXAudioSource *CreateAudioSourceAC3(InputFileMPEG2 *const pp, const unsigned int stream_id) {
 	return new AudioSourceAC3(pp, stream_id);
 }
-

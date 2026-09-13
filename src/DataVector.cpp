@@ -141,4 +141,3 @@ void *DataVector::MakeArray() const
 
 	return arr;
 }
-

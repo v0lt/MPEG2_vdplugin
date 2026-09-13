@@ -166,4 +166,3 @@ void InputOptionsMPEG2::OptionsDlg(HWND hwndParent)
 	DialogBoxParamW(g_hModule, MAKEINTRESOURCEW(IDD_OPTIONS),
 		hwndParent, OptionsDlgProc, (LPARAM)this);
 }
-
